@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -25,10 +25,11 @@ class CategoriesController extends Controller
             ['categoryName.regex' => 'Please Type validate Category Name']
 
         );
-        $category = new categories;
+        $category = new Categories;
         $category->$categoryName = $request->$categoryName;
         $category->$slug = Str::slug($request->$categoryName);
         $category->save();
-        return back();
+        return redirect(route('categoriesAdd'));
+//        return back();
     }
 }
