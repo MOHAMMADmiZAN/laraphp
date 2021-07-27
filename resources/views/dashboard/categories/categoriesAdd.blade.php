@@ -1,4 +1,8 @@
 @extends('dashboard.master');
+@section('headerCss')
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+@endsection();
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -47,3 +51,27 @@
         <!-- /.content -->
     </div>
 @endsection()
+@section('footerScript')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        toastr["success"]("Data Insert Successfully ", "Insert Data")
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-left",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+
+@endsection();
