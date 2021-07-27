@@ -21,7 +21,7 @@ class CategoriesController extends Controller
         $categoryName = 'categoryName';
         $slug = 'slug';
         $request->validate(
-            ['categoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:10'],
+            ['categoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:10|unique:categories'],
             ['categoryName.regex' => 'Please Type validate Category Name']
 
         );
