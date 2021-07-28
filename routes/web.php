@@ -24,6 +24,9 @@ Route::get('/', function () {
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard', [DashBoardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/admin/categories-add',[CategoriesController::class,'categoriesAdd'])->name('categoriesAdd');
-Route::post('/admin/categories-post',[CategoriesController::class, 'categoriesPost'])->name('categoriesPost');
+Route::get('/admin/categories-add', [CategoriesController::class, 'categoriesAdd'])->name('categoriesAdd');
+Route::post('/admin/categories-post', [CategoriesController::class, 'categoriesPost'])->name('categoriesPost');
+Route::get('/admin/categories-view', [CategoriesController::class, 'categoriesView'])->name('categoriesView');
+
+
 require __DIR__ . '/auth.php';

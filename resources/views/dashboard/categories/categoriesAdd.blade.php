@@ -4,7 +4,7 @@
 
 @endsection();
 @section('content')
-    <div class="content-wrapper">
+
         <!-- Content Header (Page header) -->
 
 
@@ -26,7 +26,9 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="categoryName">CATEGORY NAME </label>
-                                        <input type="text" class="form-control @error('categoryName') is-invalid @enderror" id="categoryName" name="categoryName"
+                                        <input type="text"
+                                               class="form-control @error('categoryName') is-invalid @enderror"
+                                               id="categoryName" name="categoryName"
                                                placeholder="Ex:Home">
                                     </div>
                                     @error('categoryName')
@@ -49,29 +51,15 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-    </div>
+
 @endsection()
 @section('footerScript')
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
-        toastr["success"]("Data Insert Successfully ", "Insert Data")
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-bottom-left",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
+        @if(session('success'))
+         toastr.success('{{session('success')}}')
+        @endif
+
     </script>
 
 @endsection();

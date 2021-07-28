@@ -31,9 +31,14 @@ class CategoriesController extends Controller
         $category->$categoryName = $request->$categoryName;
         $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) : $category->$slug = Str::slug($request->$categoryName);
         $category->save();
-        return redirect(route('categoriesAdd'));
+        return redirect(route('categoriesAdd'))->with('success', 'Category Added Successfully'); // with with flash session
 
 
 //        return back();
+    }
+
+    public function categoriesView()
+    {
+        return view('dashboard.categories.categoriesViews',['categoryData' =>Categories::paginate(5)]);
     }
 }

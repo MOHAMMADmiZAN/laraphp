@@ -259,7 +259,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index2.html" class="nav-link">
+                                <a href="{{route('categoriesView')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>View Category</p>
                                 </a>
@@ -882,7 +882,10 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-@yield('content')
+    <div class="content-wrapper">
+        @yield('content')
+    </div>
+
 <!-- /.content-wrapper -->
     <footer class="main-footer">
         <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
