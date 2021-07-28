@@ -20,15 +20,15 @@
                                 <tbody>
                                 @foreach($categoryData as $key=> $data)
                                     <tr>
-                                        <td>{{$loop->index+1}}</td>
+                                        <td>{{$categoryData->firstItem()+$key}}</td>
                                         <td>{{$data->categoryName}}</td>
                                         <td>{{$data->slug}}</td>
                                         <td>{{$data->created_at}}
                                             ({{ $data->created_at !== NULL ?$data->created_at->diffForHumans():'N/A'}})
                                         </td>
                                         <td>
-                                            <button class="btn btn-info">Edit</button>
-                                            <button class="btn btn-danger">Delete</button>
+                                            <a href="{{route('categoriesEdit',[$data->id])}}" class="btn btn-info">Edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
