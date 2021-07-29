@@ -39,7 +39,7 @@ class CategoriesController extends Controller
 
     public function categoriesView()
     {
-        return view('dashboard.categories.categoriesViews', ['categoryData' => Categories::paginate(10)]);
+        return view('dashboard.categories.categoriesViews', ['categoryData' => Categories::withoutTrashed()->paginate(5)]);
     }
 
     public function categoriesEdit($id)
@@ -66,4 +66,15 @@ class CategoriesController extends Controller
 
     }
 
+    public function categoriesSoftDelete($id)
+    {
+        $deletedData = Categories::findOrfail($id);
+        $deletedData->delete();
+        return redirect()->back()->with('deleted', 'Category Data Move To Task');
+
+    }
+    public function categoriesTrashed()
+    {
+        return view('dashboard.categories.categoriesTrashed', ['categoryData' => Categories::onlyTrashed()->paginate(5)]);
+    }
 }

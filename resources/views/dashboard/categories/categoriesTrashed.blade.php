@@ -1,8 +1,4 @@
 @extends('dashboard.master')
-@section('headerCss')
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
-@endsection();
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -34,7 +30,7 @@
                                             <a href="{{route('categoriesEdit',$data->id)}}"
                                                class="btn btn-info">Edit</a>
                                             <a href="{{route('categoriesSoftDelete',[$data->id])}}"
-                                               class="btn btn-warning">Delete</a>
+                                               class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -50,13 +46,3 @@
 
 
 @endsection()
-@section('footerScript')
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script>
-        @if(session('deleted'))
-        toastr.warning('{{session('deleted')}}')
-        @endif
-
-    </script>
-
-@endsection();

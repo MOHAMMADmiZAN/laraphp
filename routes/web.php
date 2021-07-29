@@ -29,6 +29,8 @@ Route::post('/admin/categories-post', [CategoriesController::class, 'categoriesP
 Route::get('/admin/categories-view', [CategoriesController::class, 'categoriesView'])->name('categoriesView');
 Route::get('/admin/categories-edit/{id}', [CategoriesController::class, 'categoriesEdit'])->name('categoriesEdit');
 Route::post('/admin/categories-edit-response/{id}', [CategoriesController::class, 'categoriesEditResponse'])->name('categoriesEditResponse');
+Route::get('/admin/categories-soft/{id}',[CategoriesController::class, 'categoriesSoftDelete'])->name('categoriesSoftDelete');
+Route::get('/admin/categories-trashed',[CategoriesController::class, 'categoriesTrashed'])->name('categoriesTrashed');
 
 
 require __DIR__ . '/auth.php';
