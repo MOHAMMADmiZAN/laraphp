@@ -39,7 +39,7 @@ class CategoriesController extends Controller
 
     public function categoriesView()
     {
-        return view('dashboard.categories.categoriesViews', ['categoryData' => Categories::paginate(5)]);
+        return view('dashboard.categories.categoriesViews', ['categoryData' => Categories::paginate(10)]);
     }
 
     public function categoriesEdit($id)
@@ -48,20 +48,20 @@ class CategoriesController extends Controller
         return view('dashboard.categories.categoriesEdit', ['categoryDataEdit' => Categories::findOrfail($id)]);
     }
 
-    public function categoriesEditResponse(Request $request)
+    public function categoriesEditResponse(Request $request, $id)
     {
+        $categoryName = 'categoryName';
+        $slug = 'slug';
         $request->validate(
             ['categoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:10'], // {WITH unique:categories validate}
             ['categoryName.regex' => 'Please Type validate Category Name']
 
         );
-        $categoryName = 'categoryName';
-        $slug = 'slug';
-        $category = new Categories;
+        $category = Categories::findOrfail($id);
         $category->$categoryName = $request->$categoryName;
         $category->$slug = Str::slug($request->$categoryName);
         $category->save();
-        return redirect(route('categoriesView'))->with('success', 'Category Edit Successfully'); // with flash session Successfully');
+        return redirect()->back()->with('success', 'Category Update Successfully'); // with with flash session
 
     }
 

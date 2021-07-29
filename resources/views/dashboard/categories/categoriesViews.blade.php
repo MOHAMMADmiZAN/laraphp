@@ -27,7 +27,8 @@
                                             ({{ $data->created_at !== NULL ?$data->created_at->diffForHumans():'N/A'}})
                                         </td>
                                         <td>
-                                            <a href="{{route('categoriesEdit',[$data->id])}}" class="btn btn-info">Edit</a>
+                                            <a href="{{route('categoriesEdit',$data->id)}}"
+                                               class="btn btn-info">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>

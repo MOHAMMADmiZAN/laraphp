@@ -28,7 +28,7 @@ Route::get('/admin/categories-add', [CategoriesController::class, 'categoriesAdd
 Route::post('/admin/categories-post', [CategoriesController::class, 'categoriesPost'])->name('categoriesPost');
 Route::get('/admin/categories-view', [CategoriesController::class, 'categoriesView'])->name('categoriesView');
 Route::get('/admin/categories-edit/{id}', [CategoriesController::class, 'categoriesEdit'])->name('categoriesEdit');
-Route::Post('/admin/categories-edit-response',[CategoriesController::class, 'categoriesEditResponse'])->name('categoriesEditResponse');
+Route::post('/admin/categories-edit-response/{id}', [CategoriesController::class, 'categoriesEditResponse'])->name('categoriesEditResponse');
 
 
 require __DIR__ . '/auth.php';

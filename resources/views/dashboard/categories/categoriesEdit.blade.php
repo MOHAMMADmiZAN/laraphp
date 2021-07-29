@@ -21,8 +21,9 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{route('categoriesEditResponse')}}">
+                        <form method="POST" action="{{route('categoriesEditResponse',$categoryDataEdit->id)}}">
                             @csrf
+                            <input type="hidden" name="id" value="{{$categoryDataEdit->id}}">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="categoryName">CATEGORY NAME </label>
