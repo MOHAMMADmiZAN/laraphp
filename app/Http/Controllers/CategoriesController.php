@@ -31,7 +31,7 @@ class CategoriesController extends Controller
         $category->$categoryName = $request->$categoryName;
         $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) : $category->$slug = Str::slug($request->$categoryName);
         $category->save();
-        return redirect(route('categoriesAdd'))->with('success', 'Category Added Successfully'); // with with flash session
+        return redirect()->back()->with('success', 'Category Added Successfully'); // with with flash session
 
 
 //        return back();
@@ -57,9 +57,10 @@ class CategoriesController extends Controller
             ['categoryName.regex' => 'Please Type validate Category Name']
 
         );
+        $fileCheck = Categories::where($slug, Str::slug($request->$categoryName))->exists();
         $category = Categories::findOrfail($id);
         $category->$categoryName = $request->$categoryName;
-        $category->$slug = Str::slug($request->$categoryName);
+        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) : $category->$slug = Str::slug($request->$categoryName);
         $category->save();
         return redirect()->back()->with('success', 'Category Update Successfully'); // with with flash session
 
