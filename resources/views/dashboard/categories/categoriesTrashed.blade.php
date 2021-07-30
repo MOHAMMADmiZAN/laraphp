@@ -1,4 +1,8 @@
 @extends('dashboard.master')
+@section('headerCss')
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+@endsection();
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -27,9 +31,9 @@
                                             ({{ $data->created_at !== NULL ?$data->created_at->diffForHumans():'N/A'}})
                                         </td>
                                         <td>
-                                            <a href="{{route('categoriesEdit',$data->id)}}"
-                                               class="btn btn-info">Edit</a>
-                                            <a href="{{route('categoriesSoftDelete',[$data->id])}}"
+                                            <a href="{{route('categoriesRestore',$data->id)}}"
+                                               class="btn btn-primary">Restore</a>
+                                            <a href="{{route('categoriesDelete',$data->id)}}"
                                                class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
@@ -46,3 +50,15 @@
 
 
 @endsection()
+@section('footerScript')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        @if(session('restore'))
+        toastr.success('{{session('restore')}}')
+        @endif
+        @if(session('force'))
+        toastr.error('{{session('force')}}')
+        @endif()
+    </script>
+
+@endsection();

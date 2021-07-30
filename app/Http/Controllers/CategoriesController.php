@@ -45,7 +45,7 @@ class CategoriesController extends Controller
     public function categoriesEdit($id)
     {
 
-        return view('dashboard.categories.categoriesEdit', ['categoryDataEdit' => Categories::findOrfail($id)]);
+        return view('dashboard.categories.categoriesEdit', ['categoryDataEdit' => Categories::findOrFail($id)]);
     }
 
     public function categoriesEditResponse(Request $request, $id)
@@ -58,9 +58,9 @@ class CategoriesController extends Controller
 
         );
         $fileCheck = Categories::where($slug, Str::slug($request->$categoryName))->exists();
-        $category = Categories::findOrfail($id);
+        $category = Categories::findOrFail($id);
         $category->$categoryName = $request->$categoryName;
-        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) : $category->$slug = Str::slug($request->$categoryName);
+        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8).'-'. time() : $category->$slug = Str::slug($request->$categoryName);
         $category->save();
         return redirect()->back()->with('success', 'Category Update Successfully'); // with with flash session
 
@@ -68,13 +68,29 @@ class CategoriesController extends Controller
 
     public function categoriesSoftDelete($id)
     {
-        $deletedData = Categories::findOrfail($id);
+        $deletedData = Categories::findOrFail($id);
         $deletedData->delete();
         return redirect()->back()->with('deleted', 'Category Data Move To Task');
 
     }
+
     public function categoriesTrashed()
     {
         return view('dashboard.categories.categoriesTrashed', ['categoryData' => Categories::onlyTrashed()->paginate(5)]);
+    }
+
+    public function categoriesRestore($id)
+    {
+        $restoreData = Categories::onlyTrashed()->findOrFail($id);
+        $restoreData->restore();
+        return redirect()->back()->with('restore', 'Category Data Restore Successfully');
+    }
+
+    public function categoriesDelete($id)
+    {
+        $forceDeletedData = Categories::onlyTrashed()->findOrFail($id);
+        $forceDeletedData->forceDelete();
+        return redirect()->back()->with('force', 'Category Data Permanently Deleted');
+
     }
 }
