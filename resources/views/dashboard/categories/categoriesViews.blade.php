@@ -22,7 +22,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categoryData as $key=> $data)
+                                @forelse($categoryData as $key=> $data)
                                     <tr>
                                         <td>{{$categoryData->firstItem()+$key}}</td>
                                         <td>{{$data->categoryName}}</td>
@@ -37,10 +37,15 @@
                                                class="btn btn-warning">Delete</a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="6"><h5>No Data Found</h5></td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                             {{$categoryData}}
+
                         </div>
                     </div>
                 </div>

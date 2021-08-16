@@ -22,7 +22,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categoryData as $key=> $data)
+                                @forelse($categoryData as $key=> $data)
                                     <tr>
                                         <td>{{$categoryData->firstItem()+$key}}</td>
                                         <td>{{$data->categoryName}}</td>
@@ -37,7 +37,11 @@
                                                class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="6"><h5>No Data Found</h5></td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                             {{$categoryData}}
@@ -54,7 +58,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         @if(session('restore'))
-        toastr.success('{{session('restore')}}')
+        toastr.info('{{session('restore')}}')
         @endif
         @if(session('force'))
         toastr.error('{{session('force')}}')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,7 @@ class CategoriesController extends Controller
         $fileCheck = Categories::where($slug, Str::slug($request->$categoryName))->exists();
         $category = new Categories;
         $category->$categoryName = $request->$categoryName;
-        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) : $category->$slug = Str::slug($request->$categoryName);
+        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) . '-' . Carbon::now('Asia/Dhaka')->format('Y-m-d g:i:s A') : $category->$slug = Str::slug($request->$categoryName);
         $category->save();
         return redirect()->back()->with('success', 'Category Added Successfully'); // with with flash session
 
@@ -39,7 +40,7 @@ class CategoriesController extends Controller
 
     public function categoriesView()
     {
-        return view('dashboard.categories.categoriesViews', ['categoryData' => Categories::withoutTrashed()->paginate(5)]);
+        return view('dashboard.categories.categoriesViews', ['categoryData' => Categories::latest()->withoutTrashed()->paginate(5)]);
     }
 
     public function categoriesEdit($id)
@@ -60,7 +61,7 @@ class CategoriesController extends Controller
         $fileCheck = Categories::where($slug, Str::slug($request->$categoryName))->exists();
         $category = Categories::findOrFail($id);
         $category->$categoryName = $request->$categoryName;
-        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8).'-'. time() : $category->$slug = Str::slug($request->$categoryName);
+        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) . '-' . Carbon::now('Asia/Dhaka')->format('Y-m-d g:i:s A') : $category->$slug = Str::slug($request->$categoryName);
         $category->save();
         return redirect()->back()->with('success', 'Category Update Successfully'); // with with flash session
 
@@ -76,7 +77,7 @@ class CategoriesController extends Controller
 
     public function categoriesTrashed()
     {
-        return view('dashboard.categories.categoriesTrashed', ['categoryData' => Categories::onlyTrashed()->paginate(5)]);
+        return view('dashboard.categories.categoriesTrashed', ['categoryData' => Categories::latest()->onlyTrashed()->paginate(5)]);
     }
 
     public function categoriesRestore($id)
@@ -93,4 +94,5 @@ class CategoriesController extends Controller
         return redirect()->back()->with('force', 'Category Data Permanently Deleted');
 
     }
+
 }
