@@ -235,7 +235,8 @@
                         </form>
                     </li>
                     <li class="nav-item menu-open">
-                        <a href="{{route('dashboard')}}" class="nav-link active">
+                        <a href="{{route('dashboard')}}"
+                           class="nav-link {{Route::is('dashboard')==url()->current()?'active':''}}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -244,7 +245,8 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a href="#" class="nav-link">
+                        <a href="#"
+                           class="nav-link {{Route::is('categoriesView')||Route::is('categoriesAdd')||Route::is('categoriesTrashed')==url()->current()? 'active':''}}">
                             <i class="nav-icon fas fa-th-large"></i>
                             <p>
                                 Categories
@@ -259,7 +261,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('categoriesView')}}" class="nav-link">
+                                <a href="{{route('categoriesView')}}"
+                                   class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>View Category</p>
                                 </a>
