@@ -246,7 +246,7 @@
                     </li>
                     <li class="nav-item ">
                         <a href="#"
-                           class="nav-link {{Route::is('categoriesView')||Route::is('categoriesAdd')||Route::is('categoriesTrashed')==url()->current()? 'active':''}}">
+                           class="nav-link {{Route::is('categoriesView')||Route::is('categoriesAdd')||Route::is('categoriesTrashed')||Route::is('categoriesEdit')==url()->current()? 'active':''}}">
                             <i class="nav-icon fas fa-th-large"></i>
                             <p>
                                 Categories

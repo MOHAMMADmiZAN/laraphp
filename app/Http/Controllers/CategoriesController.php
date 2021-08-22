@@ -23,14 +23,14 @@ class CategoriesController extends Controller
         $categoryName = 'categoryName';
         $slug = 'slug';
         $request->validate(
-            ['categoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:10'], // {WITH unique:categories validate}
+            ['categoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:10|unique:categories'], // {WITH unique:categories validate}
             ['categoryName.regex' => 'Please Type validate Category Name']
 
         );
-        $fileCheck = Categories::where($slug, Str::slug($request->$categoryName))->exists();
+
         $category = new Categories;
         $category->$categoryName = $request->$categoryName;
-        $fileCheck === true ? $category->$slug = Str::slug($request->$categoryName) . '-' . Str::random(8) . '-' . Carbon::now('Asia/Dhaka')->format('Y-m-d g:i:s A') : $category->$slug = Str::slug($request->$categoryName);
+        $category->$slug = Str::slug($request->$categoryName);
         $category->save();
         return redirect()->back()->with('success', 'Category Added Successfully'); // with with flash session
 
