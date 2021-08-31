@@ -36,6 +36,6 @@ Route::get('/admin/categories-restore/{id}', [CategoriesController::class, 'cate
 Route::get('/admin/categories-delete/{id}', [CategoriesController::class, 'categoriesDelete'])->name('categoriesDelete');
 Route::get('/admin/sub-category-view', [SubCategoryController::class, 'index'])->name('subCategory');
 Route::post('/admin/sub-category-insert', [SubCategoryController::class, 'SubCategoryInsert'])->name('subCategoryInsert');
-
+Route::get('/admin/sub-category-edit/{id}',[SubCategoryController::class, 'subCategoryEdit'])->name('subCategoryEdit');
 
 require __DIR__ . '/auth.php';

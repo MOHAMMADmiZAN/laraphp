@@ -12,9 +12,9 @@ class SubCategoryController extends Controller
 {
     public function index()
     {
-       $categoryData = Categories::orderBy('categoryName','asc')->get();
-       $subCategoryData = SubCategory::latest()->paginate(5);
-        return view('dashboard.subcategory.subcategoryIndex',['categoryData'=>$categoryData,'subCategoryData'=>$subCategoryData]);
+        $categoryData = Categories::orderBy('categoryName', 'asc')->get();
+        $subCategoryData = SubCategory::latest()->paginate(5);
+        return view('dashboard.subcategory.subcategoryIndex', ['categoryData' => $categoryData, 'subCategoryData' => $subCategoryData]);
     }
 
     public function subCategoryInsert(Request $request)
@@ -36,5 +36,10 @@ class SubCategoryController extends Controller
         return redirect()->back()->with('success', ' SubCategory Added Successfully'); // with with flash session
 
 
+    }
+
+    public function subCategoryEdit($id)
+    {
+        return view('dashboard.subcategory.subCategoryEdit', ['subCategoryDataEdit' => SubCategory::findOrFail($id), 'categoryData' => Categories::all()]);
     }
 }

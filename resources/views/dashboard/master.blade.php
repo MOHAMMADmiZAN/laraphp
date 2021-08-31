@@ -277,7 +277,7 @@
                     </li>
                     <li class="nav-item ">
                         <a href="#"
-                           class="nav-link {{Route::is('subCategory')==url()->current()? 'active':''}}">
+                           class="nav-link {{Route::is('subCategory') || Route::is('subCategoryEdit')==url()->current()? 'active':''}}">
                             <i class="nav-icon fas fa-th-large"></i>
                             <p>
                                 Subcategory

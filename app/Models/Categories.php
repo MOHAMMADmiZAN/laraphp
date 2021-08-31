@@ -11,9 +11,4 @@ class Categories extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    public function subCategory(): HasOne
-    {
-
-        return $this->hasOne(SubCategory::class);
-    }
 }

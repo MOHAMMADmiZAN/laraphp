@@ -9,7 +9,7 @@
                 <!-- left column -->
                 <div class="col-md-8">
                     <div class="card bg-secondary my-3">
-                        <div class="card-header text-center"><h5>View  Sub Category Data</h5></div>
+                        <div class="card-header text-center"><h5>View Sub Category Data</h5></div>
                         <div class="card-body p-3">
                             <table class="table table-striped text-center">
                                 <thead>
@@ -28,8 +28,9 @@
                                         <td>{{$data->subcategoryName}}</td>
                                         <td>{{$data->category->categoryName}}</td>
                                         <td>{{$data->created_at}}
-                                            ({{ $data->created_at !== NULL ?$data->created_at->diffForHumans():'N/A'}})</td>
-                                        <td><a href=""
+                                            ({{ $data->created_at !== NULL ?$data->created_at->diffForHumans():'N/A'}})
+                                        </td>
+                                        <td><a href="{{Route('subCategoryEdit',$data->id)}}"
                                                class="btn btn-info">Edit</a>
                                             <a href=""
                                                class="btn btn-warning">Delete</a></td>
@@ -43,7 +44,7 @@
                 </div>
                 <div class="col-md-4">
                     <!-- general form elements -->
-                    <div class="card card-primary">
+                    <div class="card card-primary mt-3">
                         <div class="card-header">
                             <h3 class="card-title">ADD SUB-CATEGORY</h3>
                         </div>

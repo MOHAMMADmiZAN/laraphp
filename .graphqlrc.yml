@@ -1,0 +1,11 @@
+schema: ./schema.graphql
+documents: ''
+extensions:
+  codegen:
+    generates:
+      ./generated-backend.ts:
+        plugins: []
+      ./generated-frontend.ts:
+        plugins: []
+  diff:
+    baseSchema: your-base-schema-here
