@@ -1,9 +1,13 @@
 @extends('dashboard.master')
+@section('headerCss')
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+@endsection();
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary mt-3">
                         <div class="card-header">
@@ -11,7 +15,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{route('subCategoryEdit',$subCategoryDataEdit->id)}}">
+                        <form method="POST" action="{{route('subCategoryEditResponse',$subCategoryDataEdit->id)}}">
                             @csrf
                             <input type="hidden" name="subId" value="{{$subCategoryDataEdit->id}}">
                             <div class="card-body">
@@ -19,7 +23,8 @@
                                     <label for="subCategoryName">SUB-CATEGORY NAME </label>
                                     <input type="text"
                                            class="form-control @error('subCategoryName') is-invalid @enderror"
-                                           id="subCategoryName" name="subCategoryName" value="{{$subCategoryDataEdit->subcategoryName}}"
+                                           id="subCategoryName" name="subCategoryName"
+                                           value="{{$subCategoryDataEdit->subcategoryName}}"
                                            placeholder="Ex:Pen">
                                 </div>
                                 @error('subCategoryName')
@@ -52,3 +57,13 @@
         </div>
     </div>
 @endsection()
+@section('footerScript')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        @if(session('success'))
+        toastr.success('{{session('success')}}')
+        @endif
+
+    </script>
+
+@endsection();

@@ -36,6 +36,12 @@ Route::get('/admin/categories-restore/{id}', [CategoriesController::class, 'cate
 Route::get('/admin/categories-delete/{id}', [CategoriesController::class, 'categoriesDelete'])->name('categoriesDelete');
 Route::get('/admin/sub-category-view', [SubCategoryController::class, 'index'])->name('subCategory');
 Route::post('/admin/sub-category-insert', [SubCategoryController::class, 'SubCategoryInsert'])->name('subCategoryInsert');
-Route::get('/admin/sub-category-edit/{id}',[SubCategoryController::class, 'subCategoryEdit'])->name('subCategoryEdit');
+Route::get('/admin/sub-category-edit/{id}', [SubCategoryController::class, 'subCategoryEdit'])->name('subCategoryEdit');
+Route::post('/admin/sub-category-edit-response/{id}', [SubCategoryController::class, 'subCategoryDataEditResponse'])->name('subCategoryEditResponse');
+Route::get('/admin/sub-category-soft/{id}', [SubCategoryController::class, 'subCategorySoft'])->name('subCategorySoft');
+Route::get('/admin/sub-category-trashed', [SubCategoryController::class, 'subCategoryTrash'])->name('subCategoryTrash');
+Route::get('/admin/sub-category-restore/{id}',[SubCategoryController::class, 'subCategoryRestore'])->name('subCategoryRestore');
+Route::get('/admin/sub-category-deleted/{id}',[SubCategoryController::class, 'subCategoryDeleted'])->name('subCategoryDeleted');
+
 
 require __DIR__ . '/auth.php';

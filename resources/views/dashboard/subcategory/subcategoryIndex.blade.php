@@ -32,7 +32,7 @@
                                         </td>
                                         <td><a href="{{Route('subCategoryEdit',$data->id)}}"
                                                class="btn btn-info">Edit</a>
-                                            <a href=""
+                                            <a href="{{Route('subCategorySoft',$data->id)}}"
                                                class="btn btn-warning">Delete</a></td>
                                     </tr>
                                 @endforeach
@@ -98,7 +98,9 @@
         @if(session('success'))
         toastr.success('{{session('success')}}')
         @endif
-
+        @if(session('deleted'))
+        toastr.warning('{{session('deleted')}}')
+        @endif
     </script>
 
 @endsection();
