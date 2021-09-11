@@ -42,6 +42,7 @@ Route::get('/admin/sub-category-soft/{id}', [SubCategoryController::class, 'subC
 Route::get('/admin/sub-category-trashed', [SubCategoryController::class, 'subCategoryTrash'])->name('subCategoryTrash');
 Route::get('/admin/sub-category-restore/{id}',[SubCategoryController::class, 'subCategoryRestore'])->name('subCategoryRestore');
 Route::get('/admin/sub-category-deleted/{id}',[SubCategoryController::class, 'subCategoryDeleted'])->name('subCategoryDeleted');
+Route::post('/admin/sub-category-check',[SubCategoryController::class, 'subCategoryCheck'])->name('subcategoryCheck');
 
 
 require __DIR__ . '/auth.php';

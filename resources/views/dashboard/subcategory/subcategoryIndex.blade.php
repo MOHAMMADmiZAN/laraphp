@@ -2,6 +2,9 @@
 @section('headerCss')
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @endsection()
+@section('title')
+    SubCategory
+@endsection
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -10,10 +13,17 @@
                 <div class="col-md-8">
                     <div class="card bg-secondary my-3">
                         <div class="card-header text-center"><h5>View Sub Category Data</h5></div>
+                        <form action="{{Route('subcategoryCheck')}}" method="POST">
+                            @csrf
                         <div class="card-body p-3">
+                            <button class="btn btn-warning w-100" id="none" style="display: none;"
+                           name="soft" value="soft" >Delete Marked</button>
                             <table class="table table-striped text-center">
                                 <thead>
                                 <tr>
+                                    <th>Mark ALL
+                                        <input type="checkbox" id="markAll">
+                                    </th>
                                     <th>#SR</th>
                                     <th> SUB CATEGORY NAME</th>
                                     <th>CATEGORY NAME</th>
@@ -24,6 +34,9 @@
                                 <tbody>
                                 @foreach($subCategoryData as $key=> $data)
                                     <tr>
+                                        <td><label>
+                                                <input type="checkbox" name="mark[]" value="{{$data->id}}" class="marked">
+                                            </label></td>
                                         <td>{{$subCategoryData->firstitem()+$key}}</td>
                                         <td>{{$data->subcategoryName}}</td>
                                         <td>{{$data->category->categoryName}}</td>
@@ -40,7 +53,9 @@
                             </table>
                             {{$subCategoryData->links()}}
                         </div>
+                        </form>
                     </div>
+
                 </div>
                 <div class="col-md-4">
                     <!-- general form elements -->
@@ -101,6 +116,30 @@
         @if(session('deleted'))
         toastr.warning('{{session('deleted')}}')
         @endif
+    </script>
+    <script>
+        let markAll = $("#markAll")
+        let marked = $(".marked")
+        let none = document.querySelector('#none')
+        markAll.click(function () {
+            marked.prop('checked', $(this).prop('checked'));
+        })
+        marked.click(function () {
+            if ($(this).prop("checked") == true) {
+                none.style.display = 'block'
+            } else if ($(this).prop("checked") == false) {
+                none.style.display = 'none'
+
+            }
+        })
+        markAll.click(function () {
+            if ($(this).prop("checked") == true) {
+                none.style.display = 'block'
+            } else if ($(this).prop("checked") == false) {
+                none.style.display = 'none'
+
+            }
+        })
     </script>
 
 @endsection();

@@ -64,7 +64,7 @@ class SubCategoryController extends Controller
 
     public function subCategorySoft($id)
     {
-        $subCategory = SubCategory::findOrFail($id);
+        $subCategory = SubCategory::withoutTrashed()->findOrFail($id);
         $subCategory->delete();
         return redirect()->back()->with('deleted', ' SubCategory Delete Successfully'); // with flash session
 
@@ -89,6 +89,34 @@ class SubCategoryController extends Controller
         $subCategory = SubCategory::onlyTrashed()->findOrFail($id);
         $subCategory->forceDelete();
         return redirect()->back()->with('forceDeleted', ' SubCategory Deleted Permanently');
+
+
+    }
+
+    public function subCategoryCheck(Request $request)
+    {
+        $ids = $request->mark;
+        if ($request->soft === 'soft') {
+            foreach ($ids as $id) {
+                $subCategory = SubCategory::withoutTrashed()->findOrFail($id);
+                $subCategory->delete();
+            }
+            return redirect()->back()->with('deleted', ' SubCategory Delete Successfully'); // with flash session
+        }
+        if ($request->restore === 'restore') {
+            foreach ($ids as $id) {
+                $subCategory = SubCategory::onlyTrashed()->findOrFail($id);
+                $subCategory->restore();
+            }
+            return redirect()->back()->with('success', ' SubCategory restore Successfully'); //// with flash session
+        }
+        if ($request->remove === 'remove') {
+            foreach ($ids as $id) {
+                $subCategory = SubCategory::onlyTrashed()->findOrFail($id);
+                $subCategory->forceDelete();
+            }
+            return redirect()->back()->with('forceDeleted', ' SubCategory Deleted Permanently'); // with flash session
+        }
 
 
     }
