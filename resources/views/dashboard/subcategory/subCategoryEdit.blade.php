@@ -34,9 +34,10 @@
                                 <select name="categoryChoose"
                                         class="form-control @error('categoryChoose') is-invalid @enderror"
                                         id="categoryChoose">
-                                    <option value>Choose Your Category</option>
+                                    <option value=>Choose Your Category</option>
                                     @foreach($categoryData as $data)
-                                        <option value="{{$data->id}}">{{$data->categoryName}}</option>
+                                        <option
+                                            {{$subCategoryDataEdit->categoryId === $data->id? "selected":""}} value="{{$data->id}}">{{$data->categoryName}}</option>
                                     @endforeach
                                 </select>
                                 @error('categoryChoose')
