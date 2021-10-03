@@ -196,7 +196,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
+                    <img src="{{asset('assets/dist/upload').'/'.Auth::user()->profileImage}}" class="img-circle elevation-2"
                          alt="User Image">
                 </div>
                 <div class="info">
@@ -223,6 +223,12 @@
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="{{route('editProfile',Auth::id())}}"
+                           class="nav-link {{Route::is('editProfile')==url()->current()?'active':''}}">
+                            <i class="fas fa-user-edit"></i>
+                            <p>Edit-Profile</p>
+                        </a>
                     <li class="nav-item">
                         <a href="{{route('logout')}}" class="nav-link"
                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\editProfileController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +41,11 @@ Route::get('/admin/sub-category-edit/{id}', [SubCategoryController::class, 'subC
 Route::post('/admin/sub-category-edit-response/{id}', [SubCategoryController::class, 'subCategoryDataEditResponse'])->name('subCategoryEditResponse');
 Route::get('/admin/sub-category-soft/{id}', [SubCategoryController::class, 'subCategorySoft'])->name('subCategorySoft');
 Route::get('/admin/sub-category-trashed', [SubCategoryController::class, 'subCategoryTrash'])->name('subCategoryTrash');
-Route::get('/admin/sub-category-restore/{id}',[SubCategoryController::class, 'subCategoryRestore'])->name('subCategoryRestore');
-Route::get('/admin/sub-category-deleted/{id}',[SubCategoryController::class, 'subCategoryDeleted'])->name('subCategoryDeleted');
-Route::post('/admin/sub-category-check',[SubCategoryController::class, 'subCategoryCheck'])->name('subcategoryCheck');
+Route::get('/admin/sub-category-restore/{id}', [SubCategoryController::class, 'subCategoryRestore'])->name('subCategoryRestore');
+Route::get('/admin/sub-category-deleted/{id}', [SubCategoryController::class, 'subCategoryDeleted'])->name('subCategoryDeleted');
+Route::post('/admin/sub-category-check', [SubCategoryController::class, 'subCategoryCheck'])->name('subcategoryCheck');
+Route::get('/admin/editProfile/{id}', [editProfileController::class, 'index'])->name('editProfile');
+Route::post('/admin/updateProfile/{id}', [editProfileController::class,'updateProfile'])->name('updateProfile');
 
 
 require __DIR__ . '/auth.php';

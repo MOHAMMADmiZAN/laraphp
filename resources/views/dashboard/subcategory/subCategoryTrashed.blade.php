@@ -2,6 +2,9 @@
 @section('headerCss')
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @endsection
+@section("title")
+    Subcategory Trash
+@endsection
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -12,10 +15,12 @@
                         <div class="card-header text-center"><h5>View Sub Category Data</h5></div>
                         <form action="{{Route('subcategoryCheck')}}" method="post">
                             @csrf
-                            <button class="btn btn-primary w-100" name="restore" id="restore" style="display: none" value="restore">
+                            <button class="btn btn-primary w-100" name="restore" id="restore" style="display: none"
+                                    value="restore">
                                 Restore
                             </button>
-                            <button class="btn btn-danger w-100" name="remove" id="remove" style="display: none" value="remove">
+                            <button class="btn btn-danger w-100" name="remove" id="remove" style="display: none"
+                                    value="remove">
                                 Delete
                             </button>
                             <div class="card-body p-3">

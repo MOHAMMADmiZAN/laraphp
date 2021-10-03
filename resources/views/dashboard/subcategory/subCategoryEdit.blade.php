@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
 @endsection();
+@section("title")
+
+@endsection
 @section('content')
     <div class="content">
         <div class="container-fluid">
