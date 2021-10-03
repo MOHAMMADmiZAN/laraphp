@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
         $subCategory = new SubCategory;
         $subCategory->$subCategoryName = $request->$subCategoryName;
         $subCategory->$slug = Str::slug($request->$subCategoryName);
-        $subCategory->categoryId = $request->categoryChoose;
+        $subCategory->category_id = $request->categoryChoose;
         $subCategory->created_at = Carbon::now('Asia/Dhaka');
         $subCategory->save();
         return redirect()->back()->with('success', ' SubCategory Added Successfully'); // with with flash session
@@ -56,7 +56,7 @@ class SubCategoryController extends Controller
         $subCategory = SubCategory::findOrFail($id);
         $subCategory->$subCategoryName = $request->$subCategoryName;
         $subCategory->$slug = Str::slug($request->$subCategoryName);
-        $subCategory->categoryId = $request->categoryChoose;
+        $subCategory->category_id = $request->categoryChoose;
         $subCategory->updated_at = Carbon::now('Asia/Dhaka');
         $subCategory->save();
         return redirect()->back()->with('success', ' SubCategory Edit Successfully'); // with with flash session

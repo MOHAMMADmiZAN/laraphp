@@ -40,7 +40,7 @@
                                     <option value=>Choose Your Category</option>
                                     @foreach($categoryData as $data)
                                         <option
-                                            {{$subCategoryDataEdit->categoryId === $data->id? "selected":""}} value="{{$data->id}}">{{$data->categoryName}}</option>
+                                            {{$subCategoryDataEdit->category_id === $data->id? "selected":""}} value="{{$data->id}}">{{$data->categoryName}}</option>
                                     @endforeach
                                 </select>
                                 @error('categoryChoose')

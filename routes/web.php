@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\editProfileController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::get('/', function () {
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard', [DashBoardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+// category Routes//
 Route::get('/admin/categories-add', [CategoriesController::class, 'categoriesAdd'])->name('categoriesAdd');
 Route::post('/admin/categories-post', [CategoriesController::class, 'categoriesPost'])->name('categoriesPost');
 Route::get('/admin/categories-view', [CategoriesController::class, 'categoriesView'])->name('categoriesView');
@@ -35,6 +37,7 @@ Route::get('/admin/categories-soft/{id}', [CategoriesController::class, 'categor
 Route::get('/admin/categories-trashed', [CategoriesController::class, 'categoriesTrashed'])->name('categoriesTrashed');
 Route::get('/admin/categories-restore/{id}', [CategoriesController::class, 'categoriesRestore'])->name('categoriesRestore');
 Route::get('/admin/categories-delete/{id}', [CategoriesController::class, 'categoriesDelete'])->name('categoriesDelete');
+// subcategory Routes //
 Route::get('/admin/sub-category-view', [SubCategoryController::class, 'index'])->name('subCategory');
 Route::post('/admin/sub-category-insert', [SubCategoryController::class, 'SubCategoryInsert'])->name('subCategoryInsert');
 Route::get('/admin/sub-category-edit/{id}', [SubCategoryController::class, 'subCategoryEdit'])->name('subCategoryEdit');
@@ -46,6 +49,7 @@ Route::get('/admin/sub-category-deleted/{id}', [SubCategoryController::class, 's
 Route::post('/admin/sub-category-check', [SubCategoryController::class, 'subCategoryCheck'])->name('subcategoryCheck');
 Route::get('/admin/editProfile/{id}', [editProfileController::class, 'index'])->name('editProfile');
 Route::post('/admin/updateProfile/{id}', [editProfileController::class,'updateProfile'])->name('updateProfile');
-
+//Product Route //
+Route::resource("products",ProductsController::class);
 
 require __DIR__ . '/auth.php';
