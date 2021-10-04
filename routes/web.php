@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\editProfileController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[FrontendController::class,'index']);
 //Route::redirect('/','login');
 
 //Route::get('/dashboard', function () {

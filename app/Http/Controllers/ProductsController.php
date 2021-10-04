@@ -44,7 +44,7 @@ class ProductsController extends Controller
     {
         $request->validate(
             [
-                "product_name" => "required|regex:/^[a-zA-Z0-9 ]+$/|min:3|max:50",
+                "product_name" => "required|min:3|max:500",
                 "product_quantity" => "required|regex:/^[0-9]+$/|min:1|max:4",
                 "product_description" => "required|min:100|max:5000",
                 "product_price" => "required|min:3|max:10",
