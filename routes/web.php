@@ -48,8 +48,8 @@ Route::get('/admin/sub-category-restore/{id}', [SubCategoryController::class, 's
 Route::get('/admin/sub-category-deleted/{id}', [SubCategoryController::class, 'subCategoryDeleted'])->name('subCategoryDeleted');
 Route::post('/admin/sub-category-check', [SubCategoryController::class, 'subCategoryCheck'])->name('subcategoryCheck');
 Route::get('/admin/editProfile/{id}', [editProfileController::class, 'index'])->name('editProfile');
-Route::post('/admin/updateProfile/{id}', [editProfileController::class,'updateProfile'])->name('updateProfile');
+Route::post('/admin/updateProfile/{id}', [editProfileController::class, 'updateProfile'])->name('updateProfile');
 //Product Route //
-Route::resource("products",ProductsController::class);
+Route::resource("products", ProductsController::class);
 
 require __DIR__ . '/auth.php';

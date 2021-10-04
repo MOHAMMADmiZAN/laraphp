@@ -20,7 +20,8 @@
                                 <input type="hidden" value="{{Auth::id()}}">
                                 <div class="form-group">
                                     <label for="name">Name:</label>
-                                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                                    <input type="text" id="name" name="name"
+                                           class="form-control @error('name') is-invalid @enderror"
                                            value="{{Auth::user()->name}}">
                                     @error('name')
                                     <div class="alert alert-danger text-center text-uppercase">{{ $message }}</div>
@@ -28,7 +29,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                    <input type="email" id="email" name="email"
+                                           class="form-control @error('email') is-invalid @enderror"
                                            value="{{Auth::user()->email}}">
                                     @error('email')
                                     <div class="alert alert-danger text-center text-uppercase">{{ $message }}</div>
@@ -36,7 +38,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="oldPassword">Old Password:</label>
-                                    <input type="password" id="oldPassword" name="oldPassword" class="form-control @error('oldPassword') is-invalid @enderror"
+                                    <input type="password" id="oldPassword" name="oldPassword"
+                                           class="form-control @error('oldPassword') is-invalid @enderror"
                                            placeholder="Type your Old password">
                                     @error('oldPassword')
                                     <div class="alert alert-danger text-center text-uppercase">{{ $message }}</div>
@@ -44,7 +47,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="newPassword">New Password:</label>
-                                    <input type="password" id="newPassword" name="newPassword" class="form-control @error('newPassword') is-invalid @enderror"
+                                    <input type="password" id="newPassword" name="newPassword"
+                                           class="form-control @error('newPassword') is-invalid @enderror"
                                            placeholder="Type New password">
                                     @error('newPassword')
                                     <div class="alert alert-danger text-center text-uppercase">{{ $message }}</div>

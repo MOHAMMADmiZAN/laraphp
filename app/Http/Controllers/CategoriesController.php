@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 class CategoriesController extends Controller
 {
@@ -23,7 +20,7 @@ class CategoriesController extends Controller
         $categoryName = 'categoryName';
         $slug = 'slug';
         $request->validate(
-            ['categoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:10|unique:categories'], // {WITH unique:categories validate}
+            ['categoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:30|unique:categories'], // {WITH unique:categories validate}
             ['categoryName.regex' => 'Please Type validate Category Name']
 
         );

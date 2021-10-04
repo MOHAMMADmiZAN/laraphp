@@ -4,8 +4,8 @@ extensions:
   codegen:
     generates:
       ./generated-backend.ts:
-        plugins: []
+        plugins: [ ]
       ./generated-frontend.ts:
-        plugins: []
+        plugins: [ ]
   diff:
     baseSchema: your-base-schema-here

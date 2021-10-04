@@ -18,10 +18,10 @@ class CreateProductsTable extends Migration
             $table->string("product_name");
             $table->integer("product_quantity");
             $table->text("product_description");
+            $table->integer("product_price");
             $table->foreignId("category_id")->constrained();
             $table->foreignId("sub_category_id")->constrained();
             $table->string("product_photo")->default("default.png");
-            $table->softDeletes();
             $table->timestamps();
         });
     }

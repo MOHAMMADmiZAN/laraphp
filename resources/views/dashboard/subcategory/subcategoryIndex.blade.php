@@ -15,44 +15,47 @@
                         <div class="card-header text-center"><h5>View Sub Category Data</h5></div>
                         <form action="{{Route('subcategoryCheck')}}" method="POST">
                             @csrf
-                        <div class="card-body p-3">
-                            <button class="btn btn-warning w-100" id="none" style="display: none;"
-                           name="soft" value="soft" >Delete Marked</button>
-                            <table class="table table-striped text-center">
-                                <thead>
-                                <tr>
-                                    <th>Mark ALL
-                                        <input type="checkbox" id="markAll">
-                                    </th>
-                                    <th>#SR</th>
-                                    <th> SUB CATEGORY NAME</th>
-                                    <th>CATEGORY NAME</th>
-                                    <th>CREATE AT</th>
-                                    <th>ACTION</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($subCategoryData as $key=> $data)
+                            <div class="card-body p-3">
+                                <button class="btn btn-warning w-100" id="none" style="display: none;"
+                                        name="soft" value="soft">Delete Marked
+                                </button>
+                                <table class="table table-striped text-center">
+                                    <thead>
                                     <tr>
-                                        <td><label>
-                                                <input type="checkbox" name="mark[]" value="{{$data->id}}" class="marked">
-                                            </label></td>
-                                        <td>{{$subCategoryData->firstitem()+$key}}</td>
-                                        <td>{{$data->subcategoryName}}</td>
-                                        <td>{{$data->category->categoryName}}</td>
-                                        <td>{{$data->created_at}}
-                                            ({{ $data->created_at !== NULL ?$data->created_at->diffForHumans():'N/A'}})
-                                        </td>
-                                        <td><a href="{{Route('subCategoryEdit',$data->id)}}"
-                                               class="btn btn-info">Edit</a>
-                                            <a href="{{Route('subCategorySoft',$data->id)}}"
-                                               class="btn btn-warning">Delete</a></td>
+                                        <th>Mark ALL
+                                            <input type="checkbox" id="markAll">
+                                        </th>
+                                        <th>#SR</th>
+                                        <th> SUB CATEGORY NAME</th>
+                                        <th>CATEGORY NAME</th>
+                                        <th>CREATE AT</th>
+                                        <th>ACTION</th>
                                     </tr>
-                                @endforeach
-                                <tbody/>
-                            </table>
-                            {{$subCategoryData->links()}}
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($subCategoryData as $key=> $data)
+                                        <tr>
+                                            <td><label>
+                                                    <input type="checkbox" name="mark[]" value="{{$data->id}}"
+                                                           class="marked">
+                                                </label></td>
+                                            <td>{{$subCategoryData->firstitem()+$key}}</td>
+                                            <td>{{$data->subcategoryName}}</td>
+                                            <td>{{$data->category->categoryName}}</td>
+                                            <td>{{$data->created_at}}
+                                                ({{ $data->created_at !== NULL ?$data->created_at->diffForHumans():'N/A'}}
+                                                )
+                                            </td>
+                                            <td><a href="{{Route('subCategoryEdit',$data->id)}}"
+                                                   class="btn btn-info">Edit</a>
+                                                <a href="{{Route('subCategorySoft',$data->id)}}"
+                                                   class="btn btn-warning">Delete</a></td>
+                                        </tr>
+                                    @endforeach
+                                    <tbody/>
+                                </table>
+                                {{$subCategoryData->links()}}
+                            </div>
                         </form>
                     </div>
 

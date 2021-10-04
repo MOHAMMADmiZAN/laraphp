@@ -196,7 +196,8 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{asset('assets/dist/upload').'/'.Auth::user()->profileImage}}" class="img-circle elevation-2"
+                    <img src="{{asset('assets/dist/upload').'/'.Auth::user()->profileImage}}"
+                         class="img-circle elevation-2"
                          alt="User Image">
                 </div>
                 <div class="info">
@@ -305,6 +306,25 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item ">
+                        <a href="#"
+                           class="nav-link {{Route::is('products.index')==url()->current()? 'active':''}}">
+                            <i class="nav-icon fas fa-th-large"></i>
+                            <p>
+                                Products
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('products.index')}}" class="nav-link ">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Products List</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
