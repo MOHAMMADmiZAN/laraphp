@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[FrontendController::class,'index']);
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 //Route::redirect('/','login');
 
 //Route::get('/dashboard', function () {
@@ -50,5 +50,7 @@ Route::get('/admin/editProfile/{id}', [editProfileController::class, 'index'])->
 Route::post('/admin/updateProfile/{id}', [editProfileController::class, 'updateProfile'])->name('updateProfile');
 //Product Route //
 Route::resource("products", ProductsController::class);
+//FrontEnd Route //
+Route::get('singleProduct/{id}', [FrontendController::class, 'singleProduct'])->name('single');
 
 require __DIR__ . '/auth.php';

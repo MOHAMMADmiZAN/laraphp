@@ -102,7 +102,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                         <div class="logo">
-                            <a href="index-2.html">
+                            <a href="{{route('home')}}">
                         <img src="{{asset("assets/frontend/assets/")}}/images/logo.png" alt="">
                         </a>
                         </div>
@@ -293,6 +293,7 @@
         </div>
     </header>
     <!-- header-area end -->
+
     @yield('frontend_content')
 
     <!-- .footer-area start -->

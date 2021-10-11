@@ -1,6 +1,9 @@
 @extends('dashboard.master')
 @section("headerCss")
 @endsection
+@section("title")
+    Products
+@endsection
 @section("content")
     <section class="content">
         <div class="container-fluid">
@@ -39,7 +42,7 @@
                                             <form action="{{route('products.destroy',$data)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger ml-1" type="submit">Delete</button>
+                                                <button class="btn btn-danger ml-1" type="submit" onclick="return confirm('Are You Sure?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
