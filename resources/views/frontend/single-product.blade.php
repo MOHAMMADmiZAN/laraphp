@@ -24,31 +24,35 @@
                     <div class="product-single-img">
 
                         <div class="product-active owl-carousel">
-                            <div class="item">
-                                <img src="{{asset("assets/dist/upload/products/".$singleProductData->product_photo)}}"
-                                     alt="">
-                            </div>
+                            @if(count($thumbnailPhoto)>0)
+                                @foreach($thumbnailPhoto as $photo)
+                                    <div class="item">
+                                        <img
+                                            src="{{asset("assets/dist/upload/products/thumbnails/".$photo->thumbnail_name)}}"
+                                            alt="">
+                                    </div>
+                                @endforeach
 
+                            @endif
+                            <div class="item">
+                                <img
+                                    src="{{asset("assets/dist/upload/products/".$singleProductData->product_photo)}}"
+                                    alt="">
+                            </div>
                         </div>
                         <div class="product-thumbnil-active  owl-carousel">
-                            <div class="item">
-                                <img src="assets/images/product/product-details/1.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/product/product-details/2.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/product/product-details/3.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/product/product-details/4.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/product/product-details/5.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/product/product-details/6.jpg" alt="">
-                            </div>
+                            @if(count($thumbnailPhoto)>0)
+                                @foreach($thumbnailPhoto as $photo)
+                                    <div class="item">
+                                        <img
+                                            src="{{asset("assets/dist/upload/products/thumbnails/".$photo->thumbnail_name)}}"
+                                            alt="">
+                                    </div>
+                                @endforeach
+                            @else <p>Preview Not Available </p>
+
+                            @endif
+
                         </div>
                     </div>
                 </div>

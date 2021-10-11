@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Products;
+use App\Models\Products_thumbnail;
 use App\Models\SubCategory;
 use Auth;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate(
             [
                 "product_name" => "required|min:3|max:500",
@@ -50,7 +52,8 @@ class ProductsController extends Controller
                 "product_price" => "required|min:3|max:10",
                 "categoryChoose" => "required",
                 "subcategoryChoose" => "required",
-                "product_image" => 'image|max:512|required',
+                "product_image" => 'image|max:5000|required',
+//                "product_thumbnails" => 'image|max:5000|required',
 
             ]
         );
@@ -63,6 +66,21 @@ class ProductsController extends Controller
             File::makeDirectory($imgFolder, 0777, true, true);
         }
         $this->extracted($productImage, $imgFolder, $newProductImageName, $request, $products);
+        $lastId = $products->id;
+        foreach ($request->product_thumbnails as $thumbnail) {
+            $thumbnails = new Products_thumbnail;
+            $ext = $thumbnail->getClientOriginalExtension();
+            $newThumbName = Str::random() . $lastId . "." . $ext;
+            $imgFolder = public_path('assets/dist/upload/products/thumbnails/');
+            if (!File::exists($imgFolder)) {
+                File::makeDirectory($imgFolder, 0777, true, true);
+            }
+            Image::make($thumbnail)->save($imgFolder . $newThumbName);
+            $thumbnails->thumbnail_name = $newThumbName;
+            $thumbnails->product_id = $lastId;
+            $thumbnails->save();
+
+        }
         return back();
     }
 
@@ -120,13 +138,13 @@ class ProductsController extends Controller
     {
         $request->validate(
             [
-                "product_name" => "required|regex:/^[a-zA-Z0-9 ]+$/|min:3|max:50",
+                "product_name" => "required|min:3|max:50",
                 "product_quantity" => "required|regex:/^[0-9]+$/|min:1|max:4",
                 "product_description" => "required|min:100|max:5000",
                 "product_price" => "required|min:3|max:10",
                 "categoryChoose" => "required",
                 "subcategoryChoose" => "required",
-                "product_image" => 'image|max:512|required',
+                "product_image" => 'image|max:5000|required',
 
             ]
         );

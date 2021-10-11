@@ -42,7 +42,9 @@
                                             <form action="{{route('products.destroy',$data)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger ml-1" type="submit" onclick="return confirm('Are You Sure?')">Delete</button>
+                                                <button class="btn btn-danger ml-1" type="submit"
+                                                        onclick="return confirm('Are You Sure?')">Delete
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
@@ -136,6 +138,21 @@
                                          src=""/>
 
                                 </div>
+                                <div class="custom-file">
+                                    <label class="custom-file-label" for="customFile2">Upload Product Image</label>
+                                    <input type="file"
+                                           class="custom-file-input @error('product_image') is-invalid @enderror"
+                                           id="customFile2" name="product_thumbnails[]"
+                                           oninput="pic2.src=window.URL.createObjectURL(this.files[0])" multiple>
+                                    @error('product_image')
+                                    <div class="alert alert-danger text-center text-uppercase mt-2">{{ $message }}</div>
+                                    @enderror
+
+                                    <img id="pic2" width="100" height="100" alt="No Preview" style="margin: 10px auto;"
+                                         src=""/>
+
+                                </div>
+
                                 <button class="btn btn-secondary mt-5 w-100" type="submit">Insert</button>
 
                             </form>
