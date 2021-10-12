@@ -112,7 +112,6 @@
                 <div class="tab-pane active" id="all">
                     <ul class="row">
                         @foreach($productData as $data)
-                            {{$data->id}}
                             @includeIf('frontend.customComponent.product-list',['data'=>$data,'modId'=>'data'.$data->id])
                             @includeIf('frontend.customComponent.product-modal',['data'=>$data,'modId'=>'data'.$data->id])
                         @endforeach
