@@ -33,12 +33,14 @@
                                     </div>
                                 @endforeach
 
+                            @else
+                                <div class="item">
+                                    <img
+                                        src="{{asset("assets/dist/upload/products/".$singleProductData->product_photo)}}"
+                                        alt="">
+                                </div>
                             @endif
-                            <div class="item">
-                                <img
-                                    src="{{asset("assets/dist/upload/products/".$singleProductData->product_photo)}}"
-                                    alt="">
-                            </div>
+
                         </div>
                         <div class="product-thumbnil-active  owl-carousel">
                             @if(count($thumbnailPhoto)>0)

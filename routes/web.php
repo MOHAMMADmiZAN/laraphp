@@ -52,5 +52,6 @@ Route::post('/admin/updateProfile/{id}', [editProfileController::class, 'updateP
 Route::resource("products", ProductsController::class);
 //FrontEnd Route //
 Route::get('singleProduct/{id}', [FrontendController::class, 'singleProduct'])->name('single');
+Route::get("/shop",[FrontendController::class, 'shop'])->name('shop');
 
 require __DIR__ . '/auth.php';

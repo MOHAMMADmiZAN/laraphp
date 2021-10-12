@@ -10,4 +10,9 @@ class Categories extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function product()
+    {
+        return $this->hasMany(Products::class, 'category_id', 'id');
+    }
 }
