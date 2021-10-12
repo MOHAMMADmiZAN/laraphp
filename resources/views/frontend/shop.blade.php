@@ -123,7 +123,7 @@
                 @foreach($categoryData as $data)
                     <div class="tab-pane" id="{{$data->id}}">
                         <ul class="row">
-                            @foreach($data->product as $pro)
+                            @foreach($data->products as $pro)
                                 @includeIf('frontend.customComponent.product-list',['data'=>$pro])
                                 @includeIf('frontend.customComponent.product-modal',['data'=>$pro])
 
