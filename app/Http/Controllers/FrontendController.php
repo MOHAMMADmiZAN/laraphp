@@ -26,7 +26,7 @@ class FrontendController extends Controller
     public function shop()
     {
         $products = Products::latest()->with(['category', 'subcategory'])->get();
-        $category = Categories::all();
+        $category = Categories::with('products')->get();
         return view("frontend.shop", ["productData" => $products, 'categoryData' => $category]);
     }
 }

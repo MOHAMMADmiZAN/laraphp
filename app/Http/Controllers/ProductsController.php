@@ -43,7 +43,6 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate(
             [
                 "product_name" => "required|min:3|max:500",
@@ -69,9 +68,8 @@ class ProductsController extends Controller
         }
         $this->extracted($productImage, $imgFolder, $newProductImageName, $request, $products);
         $lastId = $products->id;
-        $x = gettype(array());
-
-        if (gettype($request->product_thumbnails) == $x ) {
+        // thumbnail update //
+        if (is_array($request->product_thumbnails)) {
             foreach ($request->product_thumbnails as $thumbnail) {
                 $thumbnails = new Products_thumbnail;
                 $ext = $thumbnail->getClientOriginalExtension();
