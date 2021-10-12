@@ -1,4 +1,4 @@
-<div class="modal fade" id="id{{$data->id}}" tabindex="-1">
+<div class="modal fade" id="{{$modId}}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

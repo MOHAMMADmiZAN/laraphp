@@ -293,8 +293,8 @@
             </div>
             <ul class="row">
                 @foreach($products as $data)
-                    @includeIf("frontend.customComponent.product-list",['data'=>$data])
-                    @includeIf("frontend.customComponent.product-modal",['data'=>$data])
+                    @includeIf("frontend.customComponent.product-list",['data'=>$data,'modId'=>'data'.$data->id])
+                    @includeIf("frontend.customComponent.product-modal",['data'=>$data,'modId'=>'data'.$data->id])
                 @endforeach
                 <li class="col-12 text-center">
                     <a class="loadmore-btn" href="javascript:void(0);">Load More</a>

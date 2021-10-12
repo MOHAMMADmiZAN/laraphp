@@ -112,8 +112,9 @@
                 <div class="tab-pane active" id="all">
                     <ul class="row">
                         @foreach($productData as $data)
-                            @includeIf('frontend.customComponent.product-list',['data'=>$data])
-                            @includeIf('frontend.customComponent.product-modal',['data'=>$data])
+                            {{$data->id}}
+                            @includeIf('frontend.customComponent.product-list',['data'=>$data,'modId'=>'data'.$data->id])
+                            @includeIf('frontend.customComponent.product-modal',['data'=>$data,'modId'=>'data'.$data->id])
                         @endforeach
                         <li class="col-12 text-center">
                             <a class="loadmore-btn" href="javascript:void(0);">Load More</a>
@@ -123,11 +124,17 @@
                 @foreach($categoryData as $data)
                     <div class="tab-pane" id="{{$data->id}}">
                         <ul class="row">
-                            @foreach($data->products as $pro)
-                                @includeIf('frontend.customComponent.product-list',['data'=>$pro])
-                                @includeIf('frontend.customComponent.product-modal',['data'=>$pro])
+                            @foreach($data->products as $d)
+
+                                @includeIf('frontend.customComponent.product-list',['data'=>$d,'modId'=>"d".$d->id])
+
+
+                                @includeIf('frontend.customComponent.product-modal',['data'=>$d,'modId'=>"d".$d->id])
+
+
 
                             @endforeach
+
                         </ul>
                     </div>
 

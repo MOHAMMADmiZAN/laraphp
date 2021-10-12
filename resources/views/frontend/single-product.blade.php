@@ -24,7 +24,8 @@
                     <div class="product-single-img">
 
                         <div class="product-active owl-carousel">
-                            @if(count($thumbnailPhoto)>0)
+
+                            @if($thumbnailPhoto->count()>0)
                                 @foreach($thumbnailPhoto as $photo)
                                     <div class="item">
                                         <img
