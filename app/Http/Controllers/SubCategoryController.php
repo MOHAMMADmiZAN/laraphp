@@ -23,7 +23,7 @@ class SubCategoryController extends Controller
         $slug = 'slug';
         $request->validate(
             [
-                'subCategoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:30|unique:sub_categories',
+                'subCategoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:2|max:30|unique:sub_categories',
                 'categoryChoose' => 'required'
             ]
         );
@@ -49,7 +49,7 @@ class SubCategoryController extends Controller
         $slug = 'slug';
         $request->validate(
             [
-                'subCategoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:3|max:10|unique:sub_categories',
+                'subCategoryName' => 'required|regex:/^[a-zA-Z ]+$/|min:2|max:30|unique:sub_categories',
                 'categoryChoose' => 'required'
             ]
         );

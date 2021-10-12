@@ -57,6 +57,8 @@ class ProductsController extends Controller
 
             ]
         );
+
+
         $products = new Products;
         $productImage = $request->product_image;
         $ext = $productImage->getClientOriginalExtension();
@@ -67,18 +69,23 @@ class ProductsController extends Controller
         }
         $this->extracted($productImage, $imgFolder, $newProductImageName, $request, $products);
         $lastId = $products->id;
-        foreach ($request->product_thumbnails as $thumbnail) {
-            $thumbnails = new Products_thumbnail;
-            $ext = $thumbnail->getClientOriginalExtension();
-            $newThumbName = Str::random() . $lastId . "." . $ext;
-            $imgFolder = public_path('assets/dist/upload/products/thumbnails/');
-            if (!File::exists($imgFolder)) {
-                File::makeDirectory($imgFolder, 0777, true, true);
+        $x = gettype(array());
+
+        if (gettype($request->product_thumbnails) == $x ) {
+            foreach ($request->product_thumbnails as $thumbnail) {
+                $thumbnails = new Products_thumbnail;
+                $ext = $thumbnail->getClientOriginalExtension();
+                $newThumbName = Str::random() . $lastId . "." . $ext;
+                $imgFolder = public_path('assets/dist/upload/products/thumbnails/');
+                if (!File::exists($imgFolder)) {
+                    File::makeDirectory($imgFolder, 0777, true, true);
+                }
+                Image::make($thumbnail)->save($imgFolder . $newThumbName);
+                $thumbnails->thumbnail_name = $newThumbName;
+                $thumbnails->product_id = $lastId;
+                $thumbnails->save();
+
             }
-            Image::make($thumbnail)->save($imgFolder . $newThumbName);
-            $thumbnails->thumbnail_name = $newThumbName;
-            $thumbnails->product_id = $lastId;
-            $thumbnails->save();
 
         }
         return back();
