@@ -69,16 +69,20 @@
             <div class="row">
                 <div class="col-12">
                     <div class="featured-active2 owl-carousel next-prev-style">
-                       @foreach($categories as $category)
-                            <div class="featured-wrap">
-                                <div class="featured-img">
-                                    <img src="{{asset("assets/frontend/assets/")}}/images/featured/6.jpg" alt="">
-                                    <div class="featured-content">
-                                        <a href="{{route("shop")}}">{{$category->categoryName}}</a>
+                        @foreach($categories as $category)
+                            @foreach($category->products as $pd)
+                                <div class="featured-wrap">
+                                    <div class="featured-img">
+                                        <img
+                                            src="{{asset("assets/dist/upload/products/".$pd->firstWhere('category_id',$pd->category_id)->product_photo)}}"
+                                            alt="">
+                                        <div class="featured-content">
+                                            <a href="{{route("shop")}}">{{$pd->category->categoryName}}</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                           @endforeach
+                            @endforeach
+                        @endforeach
 
                     </div>
                 </div>
