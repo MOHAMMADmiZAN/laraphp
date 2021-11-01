@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class CategoriesController extends Controller
 {
@@ -24,10 +26,20 @@ class CategoriesController extends Controller
             ['categoryName.regex' => 'Please Type validate Category Name']
 
         );
-
         $category = new Categories;
+        $category_photo = $request->category_photo;
+        $ext = $category_photo->getClientOriginalExtension();
+
+        $category_photo_name = Str::uuid() . '.' . $ext;
+        print_r($category_photo_name);
+        $imgFolder = public_path('assets/dist/upload/category/');
+        if (!File::exists($imgFolder)) {
+            File::makeDirectory($imgFolder, 0777, true, true);
+        }
+        Image::make($category_photo)->save($imgFolder . $category_photo_name);
         $category->$categoryName = $request->$categoryName;
         $category->$slug = Str::slug($request->$categoryName);
+        $category->category_photo = $category_photo_name;
         $category->save();
         return redirect()->back()->with('success', 'Category Added Successfully'); // with with flash session
 

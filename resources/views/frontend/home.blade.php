@@ -73,7 +73,7 @@
                             <div class="featured-wrap">
                                 <div class="featured-img">
                                     <img
-                                        src="{{asset("assets/dist/upload/products/gfOXwpSkjRkjmqeu1.jpg")}}"
+                                        src="{{asset("assets/dist/upload/category/".$category->category_photo)}}"
                                         alt="">
                                     <div class="featured-content">
                                         <a href="{{route("shop")}}">{{$category->categoryName}}</a>
