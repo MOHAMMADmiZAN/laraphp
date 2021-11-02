@@ -43,7 +43,7 @@
                                     @enderror
 
                                     <img id="pic2" width="100" height="100" alt="No Preview"
-                                         style="margin: 10px auto; position: absolute; top: -10px;right: 100px; border-radius: 10px;"
+                                         style="margin: 10px auto; position: absolute; top: -20px;right: 200px; border-radius: 5px; border: 3px solid black"
                                          src="{{asset('/assets/dist/upload/category/default.jpg')}}"/>
 
                                 </div>

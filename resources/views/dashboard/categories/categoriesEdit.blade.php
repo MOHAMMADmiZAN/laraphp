@@ -21,7 +21,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{route('categoriesEditResponse',$categoryDataEdit->id)}}">
+                        <form method="POST" action="{{route('categoriesEditResponse',$categoryDataEdit->id)}}"
+                              enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{$categoryDataEdit->id}}">
                             <div class="card-body">
@@ -47,7 +48,7 @@
                                     @enderror
 
                                     <img id="pic2" width="100" height="100" alt="No Preview"
-                                         style="margin: 10px auto; position: absolute; top: -10px;right: 100px; border-radius: 10px;"
+                                         style="margin: 10px auto; position: absolute; top: -25px;right: 200px; border-radius: 5px; border: 3px solid black"
                                          src="{{asset('/assets/dist/upload/category/'.$categoryDataEdit->category_photo)}}"/>
 
                                 </div>
