@@ -31,4 +31,10 @@ class FrontendController extends Controller
         $category = Categories::with('products')->orderBy('categoryName')->get();
         return view::make("frontend.shop", ["productData" => $products, 'categoryData' => $category]);
     }
+
+    public function category_shop($id)
+    {
+        $category_product = Products::where("category_id", $id)->latest()->get();
+        return view::make("frontend.category_shop", ["category_product" => $category_product]);
+    }
 }

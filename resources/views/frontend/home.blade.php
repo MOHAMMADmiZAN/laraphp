@@ -76,7 +76,7 @@
                                         src="{{asset("assets/dist/upload/category/".$category->category_photo)}}"
                                         alt="">
                                     <div class="featured-content">
-                                        <a href="{{route("shop")}}">{{$category->categoryName}}</a>
+                                        <a href="{{route("category_shop",[$category->id])}}">{{$category->categoryName}}</a>
                                     </div>
                                 </div>
                             </div>

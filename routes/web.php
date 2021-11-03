@@ -53,5 +53,6 @@ Route::resource("products", ProductsController::class);
 //FrontEnd Route //
 Route::get('singleProduct/{id}', [FrontendController::class, 'singleProduct'])->name('single');
 Route::get("/shop",[FrontendController::class, 'shop'])->name('shop');
+Route::get("/category_shop/{id}",[FrontendController::class, 'category_shop'])->name('category_shop');
 
 require __DIR__ . '/auth.php';
