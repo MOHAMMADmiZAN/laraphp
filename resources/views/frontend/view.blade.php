@@ -80,7 +80,7 @@
                             <ul class="dropdown_style">
                                 <li><a href="login.html">Login</a></li>
                                 <li><a href="register.html">Register</a></li>
-                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="{{route('cart_show')}}">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                                 <li><a href="wishlist.html">wishlist</a></li>
                             </ul>
@@ -128,7 +128,7 @@
                                     <li><a href="{{route('shop')}}">Shop Page</a></li>
                                     <li><a href="shop-sidebar.html">Shop Sidebar</a></li>
                                     <li><a href="single-product.html">Product Details</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
+                                    <li><a href="{{route('cart_show')}}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                 </ul>

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
+    protected $keyType = 'string';
+
+    public function product()
+    {
+        return $this->belongsTo(Products::class);
+    }
 }

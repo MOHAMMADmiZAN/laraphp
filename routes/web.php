@@ -57,5 +57,7 @@ Route::get("/shop", [FrontendController::class, 'shop'])->name('shop');
 Route::get("/category_shop/{id}", [FrontendController::class, 'category_shop'])->name('category_shop');
 // cart //
 Route::post("/cart", [CartController::class, 'cart_store'])->name('cart_store');
+Route::get('/cart_show', [CartController::class, 'cart_show'])->name('cart_show');
+Route::get('/cart_delete/{uuid}', [CartController::class, 'cart_delete'])->name('cart_deleted');
 
 require __DIR__ . '/auth.php';

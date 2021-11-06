@@ -34,5 +34,18 @@ class CartController extends Controller
 
     }
 
+    public function cart_show()
+    {
+
+        $cart = Cart::where('cookie_id', Cookie::get('cart'))->get();
+        return view('frontend.cart', ['cart_products' => $cart]);
+    }
+
+    function cart_delete($uuid)
+    {
+        $cart = Cart::findOrFail($uuid);
+        $cart->delete();
+    }
+
 
 }
