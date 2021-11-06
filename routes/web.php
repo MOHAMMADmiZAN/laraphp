@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\editProfileController;
@@ -52,7 +53,9 @@ Route::post('/admin/updateProfile/{id}', [editProfileController::class, 'updateP
 Route::resource("products", ProductsController::class);
 //FrontEnd Route //
 Route::get('singleProduct/{id}', [FrontendController::class, 'singleProduct'])->name('single');
-Route::get("/shop",[FrontendController::class, 'shop'])->name('shop');
-Route::get("/category_shop/{id}",[FrontendController::class, 'category_shop'])->name('category_shop');
+Route::get("/shop", [FrontendController::class, 'shop'])->name('shop');
+Route::get("/category_shop/{id}", [FrontendController::class, 'category_shop'])->name('category_shop');
+// cart //
+Route::post("/cart", [CartController::class, 'cart_store'])->name('cart_store');
 
 require __DIR__ . '/auth.php';
