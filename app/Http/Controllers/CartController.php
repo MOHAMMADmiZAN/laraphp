@@ -16,8 +16,9 @@ class CartController extends Controller
         $requested_cart = 'cart';
         $random = Str::random(16) . time();
         $request->hasCookie($requested_cart) ? $random = Cookie::get($requested_cart) : Cookie::queue(Cookie::make($requested_cart, $random, 500));
-        if (Cart::firstWhere(['cookie_id' => Cookie::get($requested_cart), 'product_id' => $request->product_id])) {
-            Cart::firstWhere(['cookie_id' => Cookie::get($requested_cart), 'product_id' => $request->product_id])->increment('product_quantity', $request->quantity);
+        $find_cart = Cart::firstWhere(['cookie_id' => Cookie::get($requested_cart), 'product_id' => $request->product_id]);
+        if ($find_cart) {
+            $find_cart->increment('product_quantity', $request->quantity);
 
         } else {
             $cart = new Cart;
