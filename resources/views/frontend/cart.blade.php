@@ -100,7 +100,7 @@
                                         </li>
                                         <li><span class="pull-left"> Total </span>${{$subtotal-$discount}}</li>
                                     </ul>
-                                    <a href="checkout.html">Proceed to Checkout</a>
+                                    <a href="{{route('checkout')}}">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>

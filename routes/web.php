@@ -8,6 +8,7 @@ use App\Http\Controllers\editProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SubCategoryController;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,5 +67,7 @@ Route::post('/update_cart', [CartController::class, 'cart_update'])->name('updat
 Route::get('/admin/coupon', [CouponController::class, 'coupon_index'])->name('coupon');
 Route::post('/admin/coupon_add', [CouponController::class, 'coupon_add'])->name('coupon_add');
 Route::get('/admin/coupon_delete/{id}', [CouponController::class, 'coupon_delete'])->name('coupon_delete');
+// checkout //
+Route::view('/checkout', 'frontend.checkout')->name('checkout');
 
 require __DIR__ . '/auth.php';
