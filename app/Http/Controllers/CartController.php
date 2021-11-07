@@ -45,6 +45,7 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($uuid);
         $cart->delete();
+        return back();
     }
 
 

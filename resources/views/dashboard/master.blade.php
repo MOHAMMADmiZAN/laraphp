@@ -324,6 +324,25 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item ">
+                        <a href="#"
+                           class="nav-link {{Route::is('coupon')==url()->current()? 'active':''}}">
+                            <i class="nav-icon fas fa-th-large"></i>
+                            <p>
+                                Coupons
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('coupon')}}" class="nav-link ">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Coupons List</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
 
                 </ul>
             </nav>
