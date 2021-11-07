@@ -23,7 +23,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="">
+                    <form action="{{route('update_cart')}}" method="post">
+                        @csrf
                         <table class="table-responsive cart-wrap">
                             <thead>
                             <tr>
@@ -49,8 +50,10 @@
                                             href="{{route('single',[$cart->product_id])}}">{{$cart->product->product_name}}</a>
                                     </td>
                                     <td class="price">${{$cart->product->product_price}}</td>
+                                    {{--                                    <input type="hidden" name="cart_id[]" value="{{$cart->id}}">--}}
                                     <td class="quantity cart-plus-minus">
-                                        <input type="text" value="{{$cart->product_quantity}}"/>
+                                        <input type="text" value="{{$cart->product_quantity}}"
+                                               name="cart_quantity[{{$cart->id}}]"/>
                                     </td>
                                     <td class="total">${{$cart->product->product_price*$cart->product_quantity}}</td>
                                     <td class="remove"><a href="{{route('cart_deleted',$cart->id)}}"><i
@@ -69,10 +72,12 @@
                                 <div class="cartcupon-wrap">
                                     <ul class="d-flex">
                                         <li>
-                                            <button>Update Cart</button>
+                                            <button type="submit">Update Cart</button>
                                         </li>
-                                        <li><a href="shop.html">Continue Shopping</a></li>
+
+                                        <li><a href="{{route('shop')}}">Continue Shopping</a></li>
                                     </ul>
+
                                     <h3>Cupon</h3>
                                     <p>Enter Your Cupon Code if You Have One</p>
                                     <div class="cupon-wrap">

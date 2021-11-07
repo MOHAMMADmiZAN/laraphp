@@ -61,6 +61,7 @@ Route::post("/cart", [CartController::class, 'cart_store'])->name('cart_store');
 Route::get('/cart_show', [CartController::class, 'cart_show'])->name('cart_show');
 Route::get('/cart_delete/{uuid}', [CartController::class, 'cart_delete'])->name('cart_deleted');
 Route::get('/cart_coupon/{coupon_name}', [CartController::class, 'cart_show'])->name('apply_coupon');
+Route::post('/update_cart', [CartController::class, 'cart_update'])->name('update_cart');
 // coupon//
 Route::get('/admin/coupon', [CouponController::class, 'coupon_index'])->name('coupon');
 Route::post('/admin/coupon_add', [CouponController::class, 'coupon_add'])->name('coupon_add');

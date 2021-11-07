@@ -54,7 +54,18 @@ class CartController extends Controller
         return back();
     }
 
+    function cart_update(Request $request, Cart $cart)
+    {
+        foreach ($request->cart_quantity as $index => $quantity) {
 
+            $cart->findOrFail($index)->update(
+                [
+                    'product_quantity' => $quantity,
+                ]
+            );
+        }
+        return back();
+    }
 
 
 }

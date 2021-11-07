@@ -9,6 +9,7 @@ class Cart extends Model
 {
     use HasFactory;
     protected $keyType = 'string';
+    protected $fillable = ['product_quantity'];
 
     public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
