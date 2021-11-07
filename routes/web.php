@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\editProfileController;
@@ -68,6 +69,6 @@ Route::get('/admin/coupon', [CouponController::class, 'coupon_index'])->name('co
 Route::post('/admin/coupon_add', [CouponController::class, 'coupon_add'])->name('coupon_add');
 Route::get('/admin/coupon_delete/{id}', [CouponController::class, 'coupon_delete'])->name('coupon_delete');
 // checkout //
-Route::view('/checkout', 'frontend.checkout')->name('checkout');
+Route::get('/checkout', [CheckoutController::class,'checkout'])->name('checkout');
 
 require __DIR__ . '/auth.php';

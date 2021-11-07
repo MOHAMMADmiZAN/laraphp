@@ -18,7 +18,7 @@
     </div>
     <!-- .breadcumb-area end -->
     <!-- checkout-area start -->
-
+{{$carts}}
     <div class="checkout-area ptb-100">
         <div class="container">
             <div class="row">
