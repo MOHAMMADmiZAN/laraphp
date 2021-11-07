@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Cart;
+use App\Models\coupon;
 use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,11 +36,15 @@ class CartController extends Controller
 
     }
 
-    public function cart_show()
+    protected function cart_show(coupon $coupon, $coupon_name = "")
     {
-
+        $coupon_discount_percent = 0;
+        $coupon_discount = $coupon->firstWhere('coupon_name', $coupon_name);
+        if ($coupon_discount) {
+            $coupon_discount_percent = $coupon_discount->discount;
+        }
         $cart = Cart::where('cookie_id', Cookie::get('cart'))->get();
-        return view('frontend.cart', ['cart_products' => $cart]);
+        return view('frontend.cart', ['cart_products' => $cart, 'discount' => $coupon_discount_percent]);
     }
 
     function cart_delete($uuid)
@@ -48,6 +53,8 @@ class CartController extends Controller
         $cart->delete();
         return back();
     }
+
+
 
 
 }

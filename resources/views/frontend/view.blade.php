@@ -387,8 +387,9 @@
 <script src="{{asset("assets/frontend/assets/")}}/js/mailchimp.js"></script>
 <!-- jquery-ui.min.js -->
 <script src="{{asset("assets/frontend/assets/")}}/js/jquery-ui.min.js"></script>
-@yield('js')
+
 <!-- main js -->
 <script src="{{asset("assets/frontend/assets/")}}/js/scripts.js"></script>
+@yield('js')
 </body>
 </html>

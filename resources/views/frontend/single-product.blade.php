@@ -74,12 +74,20 @@
                             </ul>
                         </div>
                         <p>{{\Illuminate\Support\Str::substr($singleProductData->product_description,0,500)}}</p>
-                        <ul class="input-style">
-                            <li class="quantity cart-plus-minus">
-                                <input type="text" value="1"/>
-                            </li>
-                            <li><a href="cart.html">Add to Cart</a></li>
-                        </ul>
+                        <form action="{{route('cart_store')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$singleProductData->id}}">
+                            <ul class="input-style">
+                                <li class="quantity cart-plus-minus">
+                                    <input type="text" value="1" name="quantity"/>
+                                </li>
+                                <li>
+                                    <button type="submit" class="btn cart-btn-custom">
+                                        Add to Cart
+                                    </button>
+                                </li>
+                            </ul>
+                        </form>
                         <ul class="cetagory">
                             <li>Categories:</li>
                             {{$singleProductData->category->categoryName}}

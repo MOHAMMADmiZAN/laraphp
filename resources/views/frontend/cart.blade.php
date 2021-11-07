@@ -19,10 +19,11 @@
     <!-- .breadcumb-area end -->
     <!-- cart-area start -->
     <div class="cart-area ptb-100">
+
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="http://themepresss.com/tf/html/tohoney/cart">
+                    <form action="">
                         <table class="table-responsive cart-wrap">
                             <thead>
                             <tr>
@@ -75,17 +76,24 @@
                                     <h3>Cupon</h3>
                                     <p>Enter Your Cupon Code if You Have One</p>
                                     <div class="cupon-wrap">
-                                        <input type="text" placeholder="Cupon Code">
-                                        <button>Apply Cupon</button>
+                                        <input type="text" placeholder="Coupon Code" id="coupon-code">
+                                        <a id="apply_code"
+                                           style="padding: 10px 30px;position: absolute;right: 0;top: 0;background: #ef4836;color: #fff;text-transform: uppercase;border: none;margin: 0;font-family: inherit;font-size: inherit;line-height: inherit; cursor: pointer">Apply
+                                            Coupon</a>
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="col-xl-3 offset-xl-5 col-lg-4 offset-lg-3 col-md-6">
                                 <div class="cart-total text-right">
                                     <h3>Cart Totals</h3>
                                     <ul>
                                         <li><span class="pull-left">Subtotal </span>${{$subtotal}}</li>
-                                        <li><span class="pull-left"> Total </span> $380.00</li>
+                                        <li><span
+                                                class="pull-left">Discount(<small>{{$discount.'%'}}</small>)</span>${{$discount=$subtotal/100*$discount}}
+                                        </li>
+                                        <li><span class="pull-left"> Total </span>${{$subtotal-$discount}}</li>
                                     </ul>
                                     <a href="checkout.html">Proceed to Checkout</a>
                                 </div>
@@ -97,4 +105,15 @@
         </div>
     </div>
     <!-- cart-area end -->
+    <script>
+        let apply_coupon = document.querySelector('#apply_code');
+        apply_coupon.addEventListener('click', function (e) {
+            e.preventDefault()
+            let coupon_code = document.querySelector('#coupon-code')
+            let coupon = coupon_code.value
+            window.location.href = `{{url('/cart_coupon')}}/${coupon}`
+        })
+    </script>
+
+
 @endsection

@@ -22,7 +22,7 @@
                                 <tbody>
                                 @foreach($coupons as $i=> $coupon)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$i+1}}</td>
                                         <td>{{$coupon->coupon_name}}</td>
                                         <td>{{$coupon->validity}}</td>
                                         <td>{{$coupon->discount.'%'}}</td>
