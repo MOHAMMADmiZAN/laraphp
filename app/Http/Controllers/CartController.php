@@ -38,10 +38,8 @@ class CartController extends Controller
 
     protected function cart_show()
     {
-        $coupon_discount_percent = 0;
-
         $cart = Cart::where('cookie_id', Cookie::get('cart'))->get();
-        return view('frontend.cart', ['cart_products' => $cart, 'discount' => $coupon_discount_percent]);
+        return view('frontend.cart', ['cart_products' => $cart,]);
     }
 
     function cart_delete($uuid)

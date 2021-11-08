@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    protected function checkout()
+    function checkout($discount)
     {
+
+
         $carts = Cart::latest()->get();
-        return view('frontend.checkout', ['carts' => $carts]);
+        return view('frontend.checkout', ['carts' => $carts, 'discount' => $discount]);
 
     }
 }

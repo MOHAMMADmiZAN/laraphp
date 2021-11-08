@@ -69,6 +69,6 @@ Route::get('/admin/coupon', [CouponController::class, 'coupon_index'])->name('co
 Route::post('/admin/coupon_add', [CouponController::class, 'coupon_add'])->name('coupon_add');
 Route::get('/admin/coupon_delete/{id}', [CouponController::class, 'coupon_delete'])->name('coupon_delete');
 // checkout //
-Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/{discount}', [CheckoutController::class, 'checkout'])->name('checkout');
 
 require __DIR__ . '/auth.php';

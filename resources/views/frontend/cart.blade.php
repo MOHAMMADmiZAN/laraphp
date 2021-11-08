@@ -93,18 +93,20 @@
                                 </div>
                             </div>
 
-
+                            @php
+                                if(Route::is('cart_show')==url()->current()){ $discount = 0;}
+                            @endphp
                             <div class="col-xl-3 offset-xl-5 col-lg-4 offset-lg-3 col-md-6">
                                 <div class="cart-total text-right">
                                     <h3>Cart Totals</h3>
                                     <ul>
                                         <li><span class="pull-left">Subtotal </span>${{$subtotal}}</li>
                                         <li><span
-                                                class="pull-left">Discount(<small>{{$discount.'%'}}</small>)</span>${{$discount=$subtotal/100*$discount}}
+                                                class="pull-left">Discount(<small>{{$discount.'%'}}</small>)</span>${{$discount_amount=$subtotal/100*$discount}}
                                         </li>
-                                        <li><span class="pull-left"> Total </span>${{$subtotal-$discount}}</li>
+                                        <li><span class="pull-left"> Total </span>${{$subtotal-$discount_amount}}</li>
                                     </ul>
-                                    <a href="{{route('checkout')}}">Proceed to Checkout</a>
+                                    <a href="{{route('checkout',$discount)}}">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +116,10 @@
         </div>
     </div>
     <!-- cart-area end -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
+
         let apply_coupon = document.querySelector('#apply_code');
         apply_coupon.addEventListener('click', function (e) {
             e.preventDefault()
@@ -122,14 +127,13 @@
             let coupon = coupon_code.value
             if (coupon === '') {
                 let invalid_div = document.createElement('div')
-                invalid_div.classList.add('alert', 'alert-danger', 'mt-2', 'text-center')
+                invalid_div.classList.add('alert', 'alert-danger', 'mt-1', 'text-center')
                 invalid_div.innerHTML = "Please enter a valid Coupon Code"
-                document.querySelector('.cupon-wrap').append(invalid_div)
+                document.querySelector('.cupon-wrap').after(invalid_div)
             } else {
+
                 window.location.href = `{{url('/cart_coupon')}}/${coupon}`
             }
-
-
         })
     </script>
 
