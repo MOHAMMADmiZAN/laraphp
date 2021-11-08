@@ -135,7 +135,6 @@
 
 
             } else if (coupon !== '') {
-
                 window.location.href = `{{url('/cart_coupon')}}/${coupon}`
             }
 
