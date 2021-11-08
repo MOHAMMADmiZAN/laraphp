@@ -136,8 +136,6 @@
                 window.location.href = `{{url('/cart_coupon')}}/${coupon}`
 
             }
-
-
         })
     </script>
 
