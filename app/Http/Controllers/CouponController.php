@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\coupon;
 use Carbon\Carbon;
+use Cookie;
 use Illuminate\Http\Request;
+use Route;
 
 class CouponController extends Controller
 {
@@ -43,7 +46,22 @@ class CouponController extends Controller
         return redirect()->back()->with('delete', 'Coupon Deleted Successfully');
     }
 
+    function coupon_match(coupon $coupon, $coupon_name)
+    {
+        $validity = Carbon::now()->format('y-m-d');
+        $coupon->where('validity', "<", $validity)->delete();
+        $coupon_discount_percent = 0;
+        $coupon_discount = $coupon->firstWhere('coupon_name', $coupon_name);
+        if ($coupon_discount) {
+            $coupon_discount_percent = $coupon_discount->discount;
+        }
+        if (!$coupon_discount) {
+            return redirect()->route('cart_show')->with('invalid', 'coupon Invalid');
+        }
 
+        $cart = Cart::where('cookie_id', Cookie::get('cart'))->get();
+        return view('frontend.cart', ['coupon_discount' => $coupon_discount, 'discount' => $coupon_discount_percent, 'cart_products' => $cart,]);
+    }
 
 
 }

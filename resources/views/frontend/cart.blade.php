@@ -81,11 +81,15 @@
                                     <h3>Cupon</h3>
                                     <p>Enter Your Cupon Code if You Have One</p>
                                     <div class="cupon-wrap">
-                                        <input type="text" placeholder="Coupon Code" id="coupon-code">
+                                        <input type="text" placeholder="Coupon Code" id="coupon-code"
+                                               value="{{Route::is('apply_coupon')==url()->current()?$coupon_discount->coupon_name:''}}">
                                         <a id="apply_code"
                                            style="padding: 10px 30px;position: absolute;right: 0;top: 0;background: #ef4836;color: #fff;text-transform: uppercase;border: none;margin: 0;font-family: inherit;font-size: inherit;line-height: inherit; cursor: pointer">Apply
                                             Coupon</a>
                                     </div>
+                                    @if(session('invalid'))
+                                        <div class="alert alert-info mt-2 text-center">{{session('invalid')}}</div>
+                                    @endif
                                 </div>
                             </div>
 
