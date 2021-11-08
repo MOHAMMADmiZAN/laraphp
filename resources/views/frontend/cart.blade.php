@@ -132,11 +132,11 @@
                 invalid_div.innerHTML = "Please enter a valid Coupon Code"
                 document.querySelector('.cupon-wrap').after(invalid_div)
                 click++
-
-
             } else if (coupon !== '') {
                 window.location.href = `{{url('/cart_coupon')}}/${coupon}`
+
             }
+
 
         })
     </script>
