@@ -119,21 +119,26 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-
+        let click = 0
         let apply_coupon = document.querySelector('#apply_code');
         apply_coupon.addEventListener('click', function (e) {
             e.preventDefault()
             let coupon_code = document.querySelector('#coupon-code')
             let coupon = coupon_code.value
-            if (coupon === '') {
+
+            if (coupon === '' && click < 1) {
                 let invalid_div = document.createElement('div')
                 invalid_div.classList.add('alert', 'alert-danger', 'mt-1', 'text-center')
                 invalid_div.innerHTML = "Please enter a valid Coupon Code"
                 document.querySelector('.cupon-wrap').after(invalid_div)
-            } else {
+                click++
+
+
+            } else if (coupon !== '') {
 
                 window.location.href = `{{url('/cart_coupon')}}/${coupon}`
             }
+
         })
     </script>
 
