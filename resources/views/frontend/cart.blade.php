@@ -120,7 +120,16 @@
             e.preventDefault()
             let coupon_code = document.querySelector('#coupon-code')
             let coupon = coupon_code.value
-            window.location.href = `{{url('/cart_coupon')}}/${coupon}`
+            if (coupon === '') {
+                let invalid_div = document.createElement('div')
+                invalid_div.classList.add('alert', 'alert-danger', 'mt-2', 'text-center')
+                invalid_div.innerHTML = "Please enter a valid Coupon Code"
+                document.querySelector('.cupon-wrap').append(invalid_div)
+            } else {
+                window.location.href = `{{url('/cart_coupon')}}/${coupon}`
+            }
+
+
         })
     </script>
 

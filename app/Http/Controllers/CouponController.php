@@ -51,13 +51,12 @@ class CouponController extends Controller
     {
         $validity = Carbon::now()->format('y-m-d');
         $coupon->where('validity', "<", $validity)->delete();
-        $coupon_discount_percent = 0;
         $coupon_discount = $coupon->firstWhere('coupon_name', $coupon_name);
         if ($coupon_discount) {
             $coupon_discount_percent = $coupon_discount->discount;
         }
         if (!$coupon_discount) {
-            return redirect()->route('cart_show')->with('invalid', 'coupon Invalid');
+            return redirect()->route('cart_show')->with('invalid', 'Invalid coupon code');
         }
 
         $cart = Cart::where('cookie_id', Cookie::get('cart'))->get();
