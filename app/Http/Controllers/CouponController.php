@@ -44,6 +44,7 @@ class CouponController extends Controller
         $coupon = coupon::findOrFail($id);
         $coupon->delete();
         return redirect()->back()->with('delete', 'Coupon Deleted Successfully');
+
     }
 
     function coupon_match(coupon $coupon, $coupon_name)

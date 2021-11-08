@@ -88,7 +88,7 @@
                                             Coupon</a>
                                     </div>
                                     @if(session('invalid'))
-                                        <div class="alert alert-info mt-2 text-center">{{session('invalid')}}</div>
+                                        <div class="alert alert-danger mt-2 text-center">{{session('invalid')}}</div>
                                     @endif
                                 </div>
                             </div>
