@@ -116,8 +116,8 @@
         </div>
     </div>
     <!-- cart-area end -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+@endsection
+@section('js')
     <script>
         let click = 0
         let apply_coupon = document.querySelector('#apply_code');
@@ -125,19 +125,23 @@
             e.preventDefault()
             let coupon_code = document.querySelector('#coupon-code')
             let coupon = coupon_code.value
+            try {
+                if (coupon === '' && click < 1) {
+                    let invalid_div = document.createElement('div')
+                    invalid_div.classList.add('alert', 'alert-danger', 'mt-1', 'text-center')
+                    invalid_div.innerHTML = "Please enter a valid Coupon Code"
+                    document.querySelector('.cupon-wrap').after(invalid_div)
+                    click++
 
-            if (coupon === '' && click < 1) {
-                let invalid_div = document.createElement('div')
-                invalid_div.classList.add('alert', 'alert-danger', 'mt-1', 'text-center')
-                invalid_div.innerHTML = "Please enter a valid Coupon Code"
-                document.querySelector('.cupon-wrap').after(invalid_div)
-                click++
-            } else if (coupon !== '') {
-                window.location.href = `{{url('/cart_coupon')}}/${coupon}`
+                } else if (coupon !== '') {
+                    window.location.href = `{{url('/cart_coupon')}}/${coupon}`
 
+                }
+
+            } catch (e) {
+                console.log(e)
             }
         })
     </script>
-
 
 @endsection
