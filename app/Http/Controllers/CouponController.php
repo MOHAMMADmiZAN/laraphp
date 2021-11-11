@@ -14,7 +14,7 @@ class CouponController extends Controller
     function __construct(coupon $coupon)
     {
         $validity = Carbon::now()->format('y-m-d');
-        $coupon->where('validity', "<", $validity)->delete();
+        $coupon->whereDate('validity', '<', $validity)->delete();
 
     }
 
@@ -50,7 +50,7 @@ class CouponController extends Controller
     function coupon_match(coupon $coupon, $coupon_name)
     {
         $validity = Carbon::now()->format('y-m-d');
-        $coupon->where('validity', "<", $validity)->delete();
+        $coupon->whereDate('validity', '<', $validity)->delete();
         $coupon_discount = $coupon->firstWhere('coupon_name', $coupon_name);
         if ($coupon_discount) {
             $coupon_discount_percent = $coupon_discount->discount;

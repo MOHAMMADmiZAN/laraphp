@@ -17,7 +17,8 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "mll-lab/laravel-graphql-playground": "^2.5",
-        "nuwave/lighthouse": "^5.22"
+        "nuwave/lighthouse": "^5.22",
+      "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
