@@ -77,15 +77,33 @@
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
                                     class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown_style">
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="register.html">Register</a></li>
-                                <li><a href="{{route('cart_show')}}">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="wishlist.html">wishlist</a></li>
-                            </ul>
+                            @auth
+                                <ul class="dropdown_style">
+                                    <li><a href="javascript:void(0);">{{Auth::user()->name}}</a></li>
+                                    <li><a href="{{route('logout')}}" class="nav-link"
+                                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt nav-icon"></i>
+                                            <p>Logout</p>
+                                        </a></li>
+                                    <li><a href="{{route('cart_show')}}">Cart</a></li>
+                                </ul>
+                                <form action="{{route('logout')}}" method="POST" id="logout-form">
+                                    @csrf
+
+                                </form>
+
+                            @endauth
+                            @guest
+                                <ul class="dropdown_style">
+                                    <li><a href="{{route('login')}}">Login</a></li>
+                                    <li><a href="{{route('register')}}">Register</a></li>
+                                    <li><a href="{{route('cart_show')}}">Cart</a></li>
+                                    <li><a href="{{route('checkout')}}">Checkout</a></li>
+                                    <li><a href="wishlist.html">wishlist</a></li>
+                                </ul>
+                            @endguest
                         </li>
-                        <li><a href="register.html"> Login/Register </a></li>
+                        <li><a href="{{route('register')}}"> Login/Register </a></li>
                         <li>
                             <a href="javascript:void(0);"> USD <i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown_style right">
