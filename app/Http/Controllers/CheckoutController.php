@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Checkout;
 use App\Models\City;
 use App\Models\country;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Js;
 
 
 class CheckoutController extends Controller
@@ -21,7 +18,7 @@ class CheckoutController extends Controller
 
     }
 
-    function city(Request $request)
+    function city(Request $request): array
     {
         $cities = City::where('country_id', $request->country_id)->get();
         $arr = array();

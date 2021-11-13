@@ -407,6 +407,7 @@
 <!-- jquery-ui.min.js -->
 <script src="{{asset("assets/frontend/assets/")}}/js/jquery-ui.min.js"></script>
 {{--select.js--}}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <!-- main js -->
 <script src="{{asset("assets/frontend/assets/")}}/js/scripts.js"></script>
 @yield('js')
