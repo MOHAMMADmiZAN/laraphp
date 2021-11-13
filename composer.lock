@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35501787dd92b93b5ca52f3afac8444f",
+    "content-hash": "a235799e43acd4c7e9702b71381b0cb7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2368,72 +2368,6 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.1"
             },
             "time": "2021-11-03T20:52:16+00:00"
-        },
-        {
-            "name": "nnjeim/world",
-            "version": "1.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nnjeim/world.git",
-                "reference": "309e9394c883f594777cc0f69a8f71b875030d15"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nnjeim/world/zipball/309e9394c883f594777cc0f69a8f71b875030d15",
-                "reference": "309e9394c883f594777cc0f69a8f71b875030d15",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "orchestra/testbench": ">=v4.0.0",
-                "phpunit/phpunit": ">=8.5.8"
-            },
-            "type": "laravel-package",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Nnjeim\\World\\WorldServiceProvider"
-                    ],
-                    "aliases": {
-                        "Country": "Nnjeim\\World\\World"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nnjeim\\World\\": "src/",
-                    "Nnjeim\\World\\Database\\Seeders\\": "src/Database/Seeders/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Najm Njeim",
-                    "email": "najm@njeim.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Laravel countries, states, cities and currencies",
-            "homepage": "https://github.com/nnjeim/world.git",
-            "keywords": [
-                "cities",
-                "countries",
-                "currencies",
-                "laravel",
-                "lumen",
-                "states",
-                "timezones"
-            ],
-            "support": {
-                "issues": "https://github.com/nnjeim/world/issues",
-                "source": "https://github.com/nnjeim/world/tree/1.0.6"
-            },
-            "time": "2021-11-12T04:09:25+00:00"
         },
         {
             "name": "nuwave/lighthouse",

@@ -32,40 +32,46 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-12">
                                         <p>First Name *</p>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-sm-6 col-12">
-                                        <p>Last Name *</p>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-12">
-                                        <p>Compani Name</p>
-                                        <input type="text">
+                                        <input type="text" value="{{Auth::user()->name}}">
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Email Address *</p>
-                                        <input type="email">
+                                        <input type="email" value="{{Auth::user()->email}}">
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Phone No. *</p>
                                         <input type="text">
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-sm-6 col-12">
                                         <p>Country *</p>
-                                        <input type="text">
+
+                                        <label for="country"></label><select name="country" id="country">
+                                            <option value=>Select One</option>
+                                            @forelse($countries as $country)
+                                                <option value={{$country->id}}>{{$country->name}}</option>
+                                            @empty
+                                                <p>No Country</p>
+
+                                            @endforelse
+
+                                        </select>
                                     </div>
-                                    <div class="col-12">
-                                        <p>Your Address *</p>
-                                        <input type="text">
+                                    <div class="col-sm-6 col-12">
+                                        <p>Town/City *</p>
+                                        <select name="city" id="city">
+                                            <option value=>Select One</option>
+                                        </select>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Postcode/ZIP</p>
                                         <input type="email">
                                     </div>
-                                    <div class="col-sm-6 col-12">
-                                        <p>Town/City *</p>
+                                    <div class="col-12">
+                                        <p>Your Address *</p>
                                         <input type="text">
                                     </div>
+
+
                                     <div class="col-12">
                                         <input id="toggle1" type="checkbox">
                                         <label for="toggle1">Pure CSS Accordion</label>
@@ -198,4 +204,52 @@
         <div class="alert alert-info text-center mb-0"><a href="{{route('login')}}">Please Login</a></div>
     @endguest
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+
+        const country = $('#country')
+        let city = $('#city');
+        $(document).ready(function () {
+            country.select2()
+            city.select2()
+            $(".select2-selection").css({
+                "width": "100%",
+                "height": "40px",
+                "border": " 1px solid #d7d7d7",
+                "text-transform": "none",
+                "font-family": "inherit",
+                "font-size": "inherit",
+                "line-height": "inherit"
+
+            });
+            $(".select2-selection__rendered").css({
+                "padding-left": "20px",
+                "padding-top": "5px",
+            })
+            country.change((e) => {
+                const value = e.target.value
+                let url = "{{route('city')}}"
+                let data = {
+                    country_id: value,
+                }
+                let config = {
+                    headers: {
+                        'X-CSRF-TOKEN': "{{csrf_token()}}"
+                    }
+                }
+                axios.post(url, data, config).then(function (response) {
+                    console.log(response.data)
+                    city.html(response.data)
+
+
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            })
+        });
+
+    </script>
 @endsection

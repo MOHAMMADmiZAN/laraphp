@@ -9,6 +9,7 @@
     <title>Tohoney - Home One</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/png" href="{{asset("assets/frontend/assets/")}}/images/favicon.png">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
@@ -26,6 +27,8 @@
     <link rel="stylesheet" href="{{asset("assets/frontend/assets/")}}/css/metisMenu.min.css">
     <!-- swiper.min.css -->
     <link rel="stylesheet" href="{{asset("assets/frontend/assets/")}}/css/swiper.min.css">
+    {{--    select2.js--}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <!-- style css -->
     <link rel="stylesheet" href="{{asset("assets/frontend/assets/")}}/css/styles.css">
     <!-- responsive css -->
@@ -377,7 +380,10 @@
 
 <!-- Modal area start -->
 <!-- jquery latest version -->
-<script src="{{asset("assets/frontend/assets/")}}/js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!-- bootstrap js -->
 <script src="{{asset("assets/frontend/assets/")}}/js/bootstrap.min.js"></script>
 <!-- owl.carousel.2.0.0-beta.2.4 css -->
@@ -400,7 +406,7 @@
 <script src="{{asset("assets/frontend/assets/")}}/js/mailchimp.js"></script>
 <!-- jquery-ui.min.js -->
 <script src="{{asset("assets/frontend/assets/")}}/js/jquery-ui.min.js"></script>
-
+{{--select.js--}}
 <!-- main js -->
 <script src="{{asset("assets/frontend/assets/")}}/js/scripts.js"></script>
 @yield('js')
