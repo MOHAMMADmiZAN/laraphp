@@ -17,8 +17,6 @@ class CheckoutController extends Controller
     {
         $carts = Cart::latest()->get();
         $countries = country::all();
-
-
         return view('frontend.checkout', ['carts' => $carts, 'discount' => $discount, 'countries' => $countries]);
 
     }
@@ -28,7 +26,6 @@ class CheckoutController extends Controller
         $cities = City::where('country_id', $request->country_id)->get();
         $arr = array();
         foreach ($cities as $city) {
-
             $str = "<option value='$city->id'>$city->name</option>";
             $arr[] = $str;
 

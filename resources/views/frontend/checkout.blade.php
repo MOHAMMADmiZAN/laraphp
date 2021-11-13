@@ -231,20 +231,17 @@
             })
             country.change((e) => {
                 const value = e.target.value
-                let url = "{{route('city')}}"
-                let data = {
+                const url = "{{route('city')}}"
+                const data = {
                     country_id: value,
                 }
-                let config = {
+                const config = {
                     headers: {
                         'X-CSRF-TOKEN': "{{csrf_token()}}"
                     }
                 }
                 axios.post(url, data, config).then(function (response) {
-                    console.log(response.data)
                     city.html(response.data)
-
-
                 }).catch(function (error) {
                     console.log(error);
                 });
