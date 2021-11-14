@@ -18,7 +18,7 @@ class CheckoutController extends Controller
 
     }
 
-    function city(Request $request): array
+    function city(Request $request)
     {
         $cities = City::where('country_id', $request->country_id)->get();
         $arr = array();
@@ -30,5 +30,12 @@ class CheckoutController extends Controller
         return $arr;
 
 
+    }
+
+    function phone($id)
+    {
+        $country = country::findOrFail($id);
+        $phone = $country->phone_code;
+        return '+' . $phone;
     }
 }

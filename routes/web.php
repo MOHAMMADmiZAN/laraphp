@@ -70,6 +70,7 @@ Route::post('/admin/coupon_add', [CouponController::class, 'coupon_add'])->name(
 Route::get('/admin/coupon_delete/{id}', [CouponController::class, 'coupon_delete'])->name('coupon_delete');
 // checkout //
 Route::get('/checkout/{discount?}', [CheckoutController::class, 'checkout'])->name('checkout');
-Route::post('/get-city',[CheckoutController::class, 'city'])->name('city');
+Route::post('/get-city', [CheckoutController::class, 'city'])->name('city');
+Route::get('/get-phone/{id}', [CheckoutController::class, 'phone'])->name('phone');
 
 require __DIR__ . '/auth.php';

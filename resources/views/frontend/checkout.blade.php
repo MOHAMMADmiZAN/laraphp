@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Phone No. *</p>
-                                        <input type="text">
+                                        <input type="text" id="phone">
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Country *</p>
@@ -211,14 +211,15 @@
 
 
         const country = $('#country')
-        let city = $('#city');
+        const city = $('#city');
+        const phone = document.querySelector('#phone');
         $(document).ready(function () {
             country.select2()
             city.select2()
             $(".select2-selection").css({
                 "width": "100%",
                 "height": "40px",
-                "border": " 1px solid #d7d7d7",
+                "border": "1px solid #d7d7d7",
                 "text-transform": "none",
                 "font-family": "inherit",
                 "font-size": "inherit",
@@ -245,6 +246,12 @@
                 }).catch(function (error) {
                     console.log(error);
                 });
+                let phoneurl = `{{url('/get-phone')}}/${value}`
+                axios.get(phoneurl).then(function (response) {
+                    phone.value = response.data
+                }).catch(function (err) {
+                    console.log(err)
+                })
             })
         });
 
