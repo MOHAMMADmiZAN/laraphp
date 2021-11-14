@@ -232,6 +232,13 @@
             })
             country.change((e) => {
                 const value = e.target.value
+                let phoneurl = `{{url('/get-phone')}}/${value}`
+
+                axios.get(phoneurl).then(function (response) {
+                    phone.value = response.data
+                }).catch(function (err) {
+                    console.log(err)
+                })
                 const url = "{{route('city')}}"
                 const data = {
                     country_id: value,
@@ -239,6 +246,7 @@
                 const config = {
                     headers: {
                         'X-CSRF-TOKEN': "{{csrf_token()}}"
+
                     }
                 }
                 axios.post(url, data, config).then(function (response) {
@@ -246,14 +254,7 @@
                 }).catch(function (error) {
                     console.log(error);
                 });
-                let phoneurl = `{{url('/get-phone')}}/${value}`
-                axios.get(phoneurl).then(function (response) {
-                    phone.value = response.data
-                }).catch(function (err) {
-                    console.log(err)
-                })
             })
         });
-
     </script>
 @endsection
