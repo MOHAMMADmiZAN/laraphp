@@ -38,7 +38,7 @@ class CartController extends Controller
 
     protected function cart_show()
     {
-        $cart = Cart::where('cookie_id', Cookie::get('cart'))->get();
+        $cart = Cart::whereCookieId(Cookie::get('cart'))->get();
         return view('frontend.cart', ['cart_products' => $cart,]);
     }
 
