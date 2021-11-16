@@ -208,8 +208,6 @@
 @section('js')
 
     <script>
-
-
         const country = $('#country')
         const city = $('#city');
         const phone = document.querySelector('#phone');
@@ -230,6 +228,7 @@
                 "padding-left": "20px",
                 "padding-top": "5px",
             })
+            // axios alternative is javascript fetch api or core XMLHttpRequest
             country.change((e) => {
                 const value = e.target.value
                 let phoneurl = `{{url('/get-phone')}}/${value}`
