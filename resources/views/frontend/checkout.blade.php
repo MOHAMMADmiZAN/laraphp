@@ -236,7 +236,7 @@
                 axios.get(phoneurl).then(function (response) {
                     phone.value = response.data
                 }).catch(function (err) {
-                    console.log(err)
+                    console.log(err.toJSON())
                 })
                 const url = "{{route('city')}}"
                 const data = {
@@ -251,7 +251,7 @@
                 axios.post(url, data, config).then(function (response) {
                     city.html(response.data)
                 }).catch(function (error) {
-                    console.log(error);
+                    console.log(error.toJSON());
                 });
             })
         });
