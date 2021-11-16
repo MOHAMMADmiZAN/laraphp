@@ -28,7 +28,7 @@
                                         </td>
                                         <td><a data-id="{{$user->id}}"
                                                class="btn btn-primary ml-1 us-edit">Edit</a><a
-                                                href="javascript:void(0);" class="btn btn-danger ml-1">Danger</a></td>
+                                                href="javascript:void(0);" class="btn btn-danger ml-1">Delete</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
