@@ -253,6 +253,18 @@
                 }).catch(function (error) {
                     console.log(error.toJSON());
                 });
+                //257 to 266 number line gust for api testing
+                // let ipp = ''
+                // axios.get(`https://api.ipify.org?format=json`).then(function (response) {
+                //     ipp = response.data.ip
+                //     console.log(ipp)
+                //     return ipp
+                //
+                // })
+                // axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=at_vQ00MT3kIfFDsUkRUuGGnneTeTfQD&ipAddress=${ipp}`).then(function (response) {
+                //     console.log(response.data.location.region)
+                // })
+
             })
         });
     </script>
