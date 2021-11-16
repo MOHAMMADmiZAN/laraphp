@@ -253,6 +253,25 @@
                     </li>
                     <li class="nav-item ">
                         <a href="#"
+                           class="nav-link {{Route::is('users-index')==url()->current()? 'active':''}}">
+                            <i class="nav-icon fas fa-th-large"></i>
+                            <p>
+                                Users
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('users-index')}}" class="nav-link ">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Users List</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="#"
                            class="nav-link {{Route::is('categoriesView')||Route::is('categoriesAdd')||Route::is('categoriesTrashed')||Route::is('categoriesEdit')==url()->current()? 'active':''}}">
                             <i class="nav-icon fas fa-th-large"></i>
                             <p>
@@ -374,7 +393,8 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+        crossorigin="anonymous"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -387,9 +407,6 @@
 <script src="{{asset('assets/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
 <script src="{{asset('assets/plugins/sparklines/sparkline.js')}}"></script>
-<!-- JQVMap -->
-<script src="{{asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
 <script src="{{asset('assets/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
@@ -406,6 +423,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('assets/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{asset('assets/dist/js/pages/dashboard.js')}}"></script>
 @yield('footerScript')
 </body>

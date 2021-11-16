@@ -9,7 +9,7 @@ use App\Http\Controllers\editProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SubCategoryController;
-use App\Models\Cart;
+use App\Http\Controllers\Usercontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +29,10 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
+//User //
+Route::get('/users', [Usercontroller::class, 'index'])->name('users-index');
+Route::get('/user-edit/{id}', [Usercontroller::class, 'edit'])->name('user-edit');
+// dashboard
 Route::get('/dashboard', [DashBoardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 // category Routes//
 Route::get('/admin/categories-add', [CategoriesController::class, 'categoriesAdd'])->name('categoriesAdd');
