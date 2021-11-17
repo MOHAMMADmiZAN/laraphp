@@ -61,7 +61,6 @@
                 e.preventDefault()
                 let id = this.getAttribute('data-id');
                 axios.get(`{{url('/user-edit')}}/${id}`).then(function (r) {
-                    console.log(r)
                     raw.innerHTML = r.data[0]
                     let btn = document.createElement('button')
                     btn.classList.add('btn', 'btn-info', 'us_update')
@@ -78,10 +77,14 @@
 
                     })
                     let up_url = "{{route('user-edit-response')}}"
+                    let role_th_id = '#role' + r.data[1].id
+
                     btn.addEventListener('click', function (e) {
                         axios.put(up_url, {id: r.data[1].id, role: role_value,}).then(function (r) {
                             if (r.status === 200) {
-                                console.log(r)
+                                let role_th = document.querySelector(role_th_id)
+                                role_th.innerHTML = r.data.role
+                                console.log(role_th)
                             }
                         }).catch(function (e) {
                             console.log(e)
