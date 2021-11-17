@@ -17,7 +17,6 @@ class Usercontroller extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $d = $user->id;
         $str = <<<EOD
             <div class="card mt-3 text-center">
              <div class="card-header bg-dark"><h1>User Edit</h1></div>
@@ -30,7 +29,7 @@ class Usercontroller extends Controller
              </div>
              </div>
             EOD;
-        return $us_arr = [$d, $str];
+        return $us_arr = [ $str, $user];
 
     }
 

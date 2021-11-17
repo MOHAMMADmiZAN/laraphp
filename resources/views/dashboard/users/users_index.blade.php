@@ -26,9 +26,15 @@
                                         <td><img src="{{asset('assets/dist/upload').'/'.$user->profileImage}}" alt=""
                                                  width="50">
                                         </td>
-                                        <td><a data-id="{{$user->id}}"
-                                               class="btn btn-primary ml-1 us-edit">Edit</a>
-                                            <a data-id="{{$user->id}}" class="btn btn-danger ml-1 us_del">Delete</a>
+                                        <td>
+                                            <button data-id="{{$user->id}}"
+                                                    class="btn btn-primary ml-1 us-edit"{{Auth::user()->role=='super-admin'?'':"disabled"}}>
+                                                Edit
+                                            </button>
+                                            <button data-id="{{$user->id}}"
+                                                    class="btn btn-danger ml-1 us_del" {{Auth::user()->role=='super-admin'?'':"disabled"}}>
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -56,15 +62,15 @@
                 let id = this.getAttribute('data-id');
                 axios.get(`{{url('/user-edit')}}/${id}`).then(function (r) {
                     console.log(r)
-                    raw.innerHTML = r.data[1]
+                    raw.innerHTML = r.data[0]
                     let btn = document.createElement('button')
                     btn.classList.add('btn', 'btn-info', 'us_update')
                     btn.innerText = 'Update';
-                    btn.setAttribute('id',r.data[0])
+                    btn.setAttribute('id', r.data[1].id)
                     let draw = raw.lastElementChild.children[1].children[1]
                     draw.after(btn)
                     btn.addEventListener('click', function (e) {
-                        alert(e)
+
                     })
                 }).catch(function (e) {
                     console.log(e)
