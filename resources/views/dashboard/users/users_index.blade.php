@@ -97,15 +97,6 @@
             })
         }
         // delete loop
-
-        let config = {
-            headers: {
-                'X-CSRF-TOKEN': "{{csrf_token()}}"
-
-            }
-
-        }
-
         for (let i = 0; i < del.length; i++) {
             del[i].addEventListener('click', function (e) {
                 e.preventDefault()
