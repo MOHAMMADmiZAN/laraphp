@@ -22,7 +22,7 @@
                                     <tr>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>{{$user->role}}</td>
+                                        <td id="{{'role'.$user->id}}">{{$user->role}}</td>
                                         <td><img src="{{asset('assets/dist/upload').'/'.$user->profileImage}}" alt=""
                                                  width="50">
                                         </td>
@@ -81,7 +81,7 @@
                     btn.addEventListener('click', function (e) {
                         axios.put(up_url, {id: r.data[1].id, role: role_value,}).then(function (r) {
                             if (r.status === 200) {
-                                window.location.reload()
+                                console.log(r)
                             }
                         }).catch(function (e) {
                             console.log(e)

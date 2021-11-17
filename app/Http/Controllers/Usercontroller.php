@@ -41,7 +41,7 @@ class Usercontroller extends Controller
                 "role" => $request->role,
             ]
         );
-        return 'done';
+        return User::findOrFail($request->id);
 
 
     }
