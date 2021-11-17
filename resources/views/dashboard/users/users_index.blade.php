@@ -67,9 +67,20 @@
                     btn.classList.add('btn', 'btn-info', 'us_update')
                     btn.innerText = 'Update';
                     btn.setAttribute('id', r.data[1].id)
+                    let role = document.querySelector('#us_role').value
                     let draw = raw.lastElementChild.children[1].children[1]
                     draw.after(btn)
+                    let up_url = "{{route('user-edit-response')}}"
+                    let up_data = {
+                        id: r.data[1].id,
+                        role: role
+                    }
                     btn.addEventListener('click', function (e) {
+                        axios.put(up_url, up_data).then(function (r) {
+                            console.log(r)
+                        }).catch(function (e) {
+                            console.log(e)
+                        })
 
                     })
                 }).catch(function (e) {

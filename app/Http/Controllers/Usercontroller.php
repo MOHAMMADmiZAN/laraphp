@@ -29,13 +29,13 @@ class Usercontroller extends Controller
              </div>
              </div>
             EOD;
-        return $us_arr = [ $str, $user];
+        return $us_arr = [$str, $user];
 
     }
 
-    function edit_response($id)
+    function edit_response(Request $request)
     {
-        echo $id;
+    return $request->all();
 
     }
 
