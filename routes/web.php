@@ -31,7 +31,9 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 //})->middleware(['auth'])->name('dashboard');
 //User //
 Route::get('/users', [Usercontroller::class, 'index'])->name('users-index');
+//Route::get('/user-edit-response/{id}', [Usercontroller::class, 'edit_response'])->name('user-edit-response');
 Route::get('/user-edit/{id}', [Usercontroller::class, 'edit'])->name('user-edit');
+Route::post('/user-delete', [Usercontroller::class, 'user_delete'])->name('user-delete');
 // dashboard
 Route::get('/dashboard', [DashBoardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 // category Routes//
