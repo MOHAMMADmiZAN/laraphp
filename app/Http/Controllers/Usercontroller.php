@@ -25,7 +25,7 @@ class Usercontroller extends Controller
              <input type="text" id="us_name" value="$user->name" class="form-control" readonly>
              </div>
              <div class="form-group">
-             <input type="text" id="us_role" value="$user->role" class="form-control">
+             <input type="text" id="us_role" class="form-control">
              </div>
              </div>
             EOD;
@@ -35,7 +35,14 @@ class Usercontroller extends Controller
 
     function edit_response(Request $request)
     {
-    return $request->all();
+        $user = User::whereId($request->id);
+        $user->update(
+            [
+                "role" => $request->role,
+            ]
+        );
+        return 'done';
+
 
     }
 
