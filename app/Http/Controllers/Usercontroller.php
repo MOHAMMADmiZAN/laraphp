@@ -46,9 +46,11 @@ class Usercontroller extends Controller
 
     }
 
-    function user_delete(Request $request)
+    function user_delete($id)
     {
-        User::whereId($request->id)->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
+
 
     }
 }

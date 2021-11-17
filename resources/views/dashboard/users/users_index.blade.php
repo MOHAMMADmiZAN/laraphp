@@ -17,7 +17,7 @@
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="del_tbody">
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{$user->name}}</td>
@@ -84,7 +84,7 @@
                             if (r.status === 200) {
                                 let role_th = document.querySelector(role_th_id)
                                 role_th.innerHTML = r.data.role
-                                console.log(role_th)
+
                             }
                         }).catch(function (e) {
                             console.log(e)
@@ -97,7 +97,7 @@
             })
         }
         // delete loop
-        let del_url = "{{route('user-delete')}}"
+
         let config = {
             headers: {
                 'X-CSRF-TOKEN': "{{csrf_token()}}"
@@ -110,10 +110,8 @@
             del[i].addEventListener('click', function (e) {
                 e.preventDefault()
                 let id = this.getAttribute('data-id');
-                let data = {
-                    id: id,
-                }
-                axios.post(del_url, data, config).then(function (r) {
+                let del_url = `{{url('/user-delete')}}/${id}`
+                axios.delete(del_url).then(function (r) {
                     console.log(r)
                     window.location.reload();
                 }).catch(function (e) {
