@@ -17,7 +17,8 @@ class Usercontroller extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return <<<EOD
+        $d = $user->id;
+        $str = <<<EOD
             <div class="card mt-3 text-center">
              <div class="card-header bg-dark"><h1>User Edit</h1></div>
              <div class="card-body">
@@ -27,10 +28,10 @@ class Usercontroller extends Controller
              <div class="form-group">
              <input type="text" id="us_role" value="$user->role" class="form-control">
              </div>
-             <a onclick="window.location.href='/user-edit-response/$user->id'"  class="btn btn-info us_update" id="$user->id" role="button">Update</a>
-            </div>
+             </div>
+            EOD;
+        return $us_arr = [$d, $str];
 
-          EOD;
     }
 
     function edit_response($id)

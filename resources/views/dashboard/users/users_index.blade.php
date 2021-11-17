@@ -55,7 +55,17 @@
                 e.preventDefault()
                 let id = this.getAttribute('data-id');
                 axios.get(`{{url('/user-edit')}}/${id}`).then(function (r) {
-                    raw.innerHTML = r.data
+                    console.log(r)
+                    raw.innerHTML = r.data[1]
+                    let btn = document.createElement('button')
+                    btn.classList.add('btn', 'btn-info', 'us_update')
+                    btn.innerText = 'Update';
+                    btn.setAttribute('id',r.data[0])
+                    let draw = raw.lastElementChild.children[1].children[1]
+                    draw.after(btn)
+                    btn.addEventListener('click', function (e) {
+                        alert(e)
+                    })
                 }).catch(function (e) {
                     console.log(e)
                 })
