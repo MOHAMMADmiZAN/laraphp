@@ -101,7 +101,9 @@
                 let del_th = document.getElementById(del_th_id)
                 let del_url = `{{url('/user-delete')}}/${id}`
                 axios.delete(del_url).then(function (r) {
-                    del_th.remove()
+                    if (r.status === 200) {
+                        del_th.remove()
+                    }
                 }).catch(function (e) {
                     console.log(e)
                 })
