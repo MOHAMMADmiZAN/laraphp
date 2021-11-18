@@ -75,8 +75,13 @@
                     let role = document.querySelector('#us_role')
                     role.setAttribute('value', r.data[1].role)
                     let role_value = role.getAttribute('value')
-                    role.addEventListener('change', function (e) {
+                    // role.addEventListener('change', function (e) {
+                    //     role_value = e.target.value
+                    // })
+                    role.addEventListener('keyup', function (e) {
                         role_value = e.target.value
+                        console.log(role_value)
+
                     })
                     let up_url = "{{route('user-edit-response')}}"
                     let role_th_id = '#role' + r.data[1].id
