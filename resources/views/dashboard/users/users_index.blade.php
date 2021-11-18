@@ -85,6 +85,9 @@
                             if (r.status === 200) {
                                 let role_th = document.querySelector(role_th_id)
                                 role_th.innerHTML = r.data.role
+                                setTimeout(function () {
+                                    raw.innerHTML = ''
+                                }, 500)
                             }
                         }).catch(function (e) {
                             console.log(e)

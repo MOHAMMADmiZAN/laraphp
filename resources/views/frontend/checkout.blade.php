@@ -204,6 +204,7 @@
         <div class="alert alert-info text-center mb-0"><a href="{{route('login')}}">Please Login</a></div>
     @endguest
 
+
 @endsection
 @section('js')
 
