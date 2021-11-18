@@ -29,7 +29,7 @@ class Usercontroller extends Controller
              </div>
              </div>
             EOD;
-        return $us_arr = [$str, $user];
+        return [$str, $user];
 
     }
 
@@ -51,7 +51,7 @@ class Usercontroller extends Controller
         $user = User::findOrFail($id);
         if ($user->role !== 'super-admin') {
             $user->delete();
-        }else{
+        } else {
             return 'Not Dumped';
         }
 
