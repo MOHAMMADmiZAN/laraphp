@@ -17,9 +17,9 @@
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                <tbody id="del_tbody">
+                                <tbody>
                                 @foreach($users as $user)
-                                    <tr>
+                                    <tr id="del_tbody{{$user->id}}">
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td id="{{'role'.$user->id}}">{{$user->role}}</td>
@@ -71,20 +71,16 @@
                     let role = document.querySelector('#us_role')
                     role.setAttribute('value', r.data[1].role)
                     let role_value = role.getAttribute('value')
-                    console.log(role_value)
                     role.addEventListener('change', function (e) {
                         role_value = e.target.value
-
                     })
                     let up_url = "{{route('user-edit-response')}}"
                     let role_th_id = '#role' + r.data[1].id
-
                     btn.addEventListener('click', function (e) {
                         axios.put(up_url, {id: r.data[1].id, role: role_value,}).then(function (r) {
                             if (r.status === 200) {
                                 let role_th = document.querySelector(role_th_id)
                                 role_th.innerHTML = r.data.role
-
                             }
                         }).catch(function (e) {
                             console.log(e)
@@ -101,10 +97,11 @@
             del[i].addEventListener('click', function (e) {
                 e.preventDefault()
                 let id = this.getAttribute('data-id');
+                let del_th_id = `del_tbody${id}`
+                let del_th = document.getElementById(del_th_id)
                 let del_url = `{{url('/user-delete')}}/${id}`
                 axios.delete(del_url).then(function (r) {
-                    console.log(r)
-                    window.location.reload();
+                    del_th.remove()
                 }).catch(function (e) {
                     console.log(e)
                 })
