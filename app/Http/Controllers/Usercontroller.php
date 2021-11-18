@@ -10,7 +10,7 @@ class Usercontroller extends Controller
 {
     public function index()
     {
-        $users = User::latest()->paginate(10);
+        $users = User::latest()->paginate(5);
         return view('dashboard.users.users_index', ['users' => $users]);
     }
 
@@ -49,7 +49,11 @@ class Usercontroller extends Controller
     function user_delete($id)
     {
         $user = User::findOrFail($id);
-        $user->delete();
+        if ($user->role !== 'super-admin') {
+            $user->delete();
+        }else{
+            return 'Not Dumped';
+        }
 
 
     }

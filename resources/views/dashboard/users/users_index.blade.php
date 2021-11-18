@@ -4,10 +4,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="card bg-gray mt-3">
-                        <div class="card-header text-center"><h1>Users Details</h1></div>
+                    <div class="card  mt-3">
+                        <div class="card-header bg-dark text-center"><h1>Users Details</h1></div>
                         <div class="card-body">
-                            <table class="table table-striped text-center table-bordered mb-3">
+                            <table class="table table-striped text-center mb-3">
                                 <thead>
                                 <tr>
                                     <th>User Name</th>
@@ -50,8 +50,12 @@
     </div>
 @endsection
 @section('footerScript')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
+
         // select multiple class same name //
+
+
         let raw = document.getElementById('raw')
         let edit = document.getElementsByClassName('us-edit');
         let del = document.getElementsByClassName('us_del')
@@ -102,8 +106,16 @@
                 let del_url = `{{url('/user-delete')}}/${id}`
                 axios.delete(del_url).then(function (r) {
                     if (r.status === 200) {
-                        del_th.remove()
+                        if (r.data === 'Not Dumped') {
+                            alert('This User Is a Super Admin')
+                        } else {
+                            del_th.remove()
+                        }
                     }
+                    if (document.querySelector('tbody').childElementCount < 1) {
+                        window.location.reload()
+                    }
+
                 }).catch(function (e) {
                     console.log(e)
                 })
