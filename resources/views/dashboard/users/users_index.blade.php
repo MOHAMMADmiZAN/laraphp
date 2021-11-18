@@ -52,7 +52,7 @@
 @section('footerScript')
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
-
+        document.title = 'User_Index'
         // select multiple class same name //
 
 
