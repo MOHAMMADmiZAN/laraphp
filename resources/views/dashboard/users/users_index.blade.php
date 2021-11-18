@@ -73,14 +73,10 @@
                     let draw = raw.lastElementChild.children[1].children[1]
                     draw.after(btn)
                     let role = document.querySelector('#us_role')
-                    role.setAttribute('value', r.data[1].role)
+                    role.value = r.data[1].role
                     let role_value = role.getAttribute('value')
-                    // role.addEventListener('change', function (e) {
-                    //     role_value = e.target.value
-                    // })
                     role.addEventListener('keyup', function (e) {
                         role_value = e.target.value
-                        console.log(role_value)
 
                     })
                     let up_url = "{{route('user-edit-response')}}"
