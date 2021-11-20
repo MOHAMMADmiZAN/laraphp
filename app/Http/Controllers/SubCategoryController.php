@@ -13,7 +13,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $categoryData = Categories::orderBy('categoryName', 'asc')->get();
-        $subCategoryData = SubCategory::latest()->with('category')->withoutTrashed()->paginate(5);
+        $subCategoryData = SubCategory::latest()->withoutTrashed()->paginate(5);
         return view('dashboard.subcategory.subcategoryIndex', ['categoryData' => $categoryData, 'subCategoryData' => $subCategoryData]);
     }
 

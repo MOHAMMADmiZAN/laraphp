@@ -11,6 +11,7 @@ class SubCategory extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $with = ['category'];
 
     public function category()
     {
