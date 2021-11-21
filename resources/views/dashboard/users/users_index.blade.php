@@ -55,12 +55,11 @@
 
         document.title = 'User_Index'
         // select multiple class same name //
-
-
         let raw = document.getElementById('raw')
         let edit = document.getElementsByClassName('us-edit');
         let del = document.getElementsByClassName('us_del')
-        let admin_roles = ['super-admin', 'admin', 'moderator'];
+        let admin_roles = ['super-admin','admin'];
+        let update_role = ['admin', 'moderator', 'user'];
         let auth_role = "{{Auth()->user()->role}}"
         // update loop
         for (let i = 0; i < edit.length; i++) {
@@ -81,9 +80,14 @@
                         role.setAttribute('value', r.data[1].role)
                         let role_value = role.getAttribute('value')
                         "{{auth()->id()}}" === id || auth_role === role_value ? btn.remove() : ''
+                        auth_role === 'moderator' && role_value === 'admin' ? btn.remove() : ''
                         role.addEventListener('keyup', function (e) {
                             role_value = e.target.value
                             if (auth_role === role_value) {
+                                btn.remove()
+                            } else if (auth_role === 'moderator' && role_value === 'admin') {
+                                btn.remove()
+                            } else if (!update_role.includes(role_value)) {
                                 btn.remove()
                             } else {
                                 role_value = e.target.value
