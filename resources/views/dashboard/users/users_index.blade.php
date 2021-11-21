@@ -28,11 +28,11 @@
                                         </td>
                                         <td>
                                             <button data-id="{{$user->id}}"
-                                                    class="btn btn-primary ml-1 us-edit"{{Auth::user()->role=='super-admin'?'':"disabled"}}>
+                                                    class="btn btn-primary ml-1 us-edit"{{in_array(Auth::user()->role,$admin_role)?'':"disabled"}}>
                                                 Edit
                                             </button>
                                             <button data-id="{{$user->id}}"
-                                                    class="btn btn-danger ml-1 us_del" {{Auth::user()->role=='super-admin'?'':"disabled"}}>
+                                                    class="btn btn-danger ml-1 us_del" {{in_array(Auth::user()->role,$admin_role)?'':"disabled"}}>
                                                 Delete
                                             </button>
                                         </td>
@@ -59,12 +59,13 @@
         let raw = document.getElementById('raw')
         let edit = document.getElementsByClassName('us-edit');
         let del = document.getElementsByClassName('us_del')
+        let admin_roles = ['super-admin', 'admin', 'moderator'];
         let auth_role = "{{Auth()->user()->role}}"
         // update loop
         for (let i = 0; i < edit.length; i++) {
 
             edit[i].addEventListener('click', function (e) {
-                if (auth_role !== 'user') {
+                if (admin_roles.includes(auth_role)) {
                     e.preventDefault()
                     let id = this.getAttribute('data-id');
                     axios.get(`{{url('/user-edit')}}/${id}`).then(function (r) {
@@ -102,7 +103,7 @@
                         console.log(e)
                     })
                 } else {
-                    alert('You Are Not Authenticated')
+                    alert(`You Are Not Allowed To Edit`)
                 }
             })
 
@@ -110,7 +111,7 @@
         // delete loop
         for (let i = 0; i < del.length; i++) {
             del[i].addEventListener('click', function (e) {
-                if (auth_role !== 'user') {
+                if (admin_roles.includes(auth_role)) {
                     e.preventDefault()
                     let id = this.getAttribute('data-id');
                     let del_th_id = `del_tbody${id}`
@@ -119,7 +120,7 @@
                     axios.delete(del_url).then(function (r) {
                         if (r.status === 200) {
                             if (r.data === 'Not Dumped') {
-                                alert('This User Is a Super Admin')
+                                alert('You are not allowed to delete')
                             } else {
                                 del_th.remove()
                             }

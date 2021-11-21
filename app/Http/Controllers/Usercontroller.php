@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class Usercontroller extends Controller
 {
+    public $admin_role = ['super-admin', 'admin', 'moderator'];
+    public $user_role = ['user', 'member', 'admin', 'moderator'];
+
     public function index()
     {
         $users = User::latest()->paginate(5);
-        return view('dashboard.users.users_index', ['users' => $users]);
+        return view('dashboard.users.users_index', ['users' => $users, 'admin_role' => $this->admin_role]);
     }
 
     public function edit($id)
@@ -36,20 +39,22 @@ class Usercontroller extends Controller
     function edit_response(Request $request)
     {
         $user = User::whereId($request->id);
-        $user->update(
-            [
-                "role" => $request->role,
-            ]
-        );
-        return User::whereId($request->id)->first();
-
-
+        if (in_array($request->role, $this->user_role) && $request->role != auth()->user()->role && $request->role != 'super-admin') {
+            $user->update(
+                [
+                    "role" => $request->role,
+                ]
+            );
+            return User::whereId($request->id)->first();
+        } else {
+            return back()->with('update_fail', 'Your Data Not Updated');
+        }
     }
 
     function user_delete($id)
     {
         $user = User::findOrFail($id);
-        if ($user->role !== 'super-admin') {
+        if ($user->role !== auth()->user()->role && $user->role != 'super-admin') {
             $user->delete();
         } else {
             return 'Not Dumped';
