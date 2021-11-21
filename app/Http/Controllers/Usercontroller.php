@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class Usercontroller extends Controller
 {
-    public $admin_role = ['super-admin', 'admin', 'moderator'];
+    public $admin_role = ['super-admin', 'admin'];
     public $user_role = ['user', 'member', 'admin', 'moderator'];
 
     public function index()
