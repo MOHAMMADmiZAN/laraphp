@@ -80,9 +80,15 @@
                         let role = document.querySelector('#us_role')
                         role.setAttribute('value', r.data[1].role)
                         let role_value = role.getAttribute('value')
-                        "{{auth()->id()}}" === id || auth_role === role_value ? role.setAttribute('readonly', 'true') : ''
+                        "{{auth()->id()}}" === id || auth_role === role_value ? btn.remove() : ''
                         role.addEventListener('keyup', function (e) {
                             role_value = e.target.value
+                            if (auth_role === role_value) {
+                                btn.remove()
+                            } else {
+                                role_value = e.target.value
+                                draw.after(btn)
+                            }
 
                         })
                         let up_url = "{{route('user-edit-response')}}"
