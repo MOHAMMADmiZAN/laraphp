@@ -102,8 +102,9 @@ class CheckoutController extends Controller
             "product_price" => $product->product_price * $request->product_quantity,
             'created_at' => now()
         ]);
+        Cart::whereCookieId(Cookie::get('cart'))->delete();
         Cookie::queue(Cookie::forget('cart'));
-        return back();
+        return route('checkout');
 
 
     }

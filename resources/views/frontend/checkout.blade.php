@@ -362,9 +362,9 @@
 
                                         }
                                         axios.post(order_products_details_url, order_products_details_data, config).then((r) => {
-                                            console.log(r)
+                                            window.location.href = r.data
                                         }).catch((e) => {
-                                            console.log(e)
+                                            console.log(e.toJSON())
                                         })
 
                                     }
