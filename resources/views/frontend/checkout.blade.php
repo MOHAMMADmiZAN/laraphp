@@ -322,71 +322,76 @@
 
                     }
                 }
-                console.log(order_data)
-                axios.post(order_url, order_data, config).then((r) => {
-                    // if order done //
-                    if (r.status === 200) {
-                        let billing_data = {
-                            lastId: r.data,
-                            name: name.value,
-                            email: email.value,
-                            phone_number: phone_number.value,
-                            country_id: country_id.value,
-                            city_id: city_id.value,
-                            zip: zip.value,
-                            address: address.value,
-                            notes: notes.value,
-                        }
-                        let bill_url = "{{route('order_billing_details')}}"
-                        let err_remove_box = document.getElementById('err_box')
-                        if (err_remove_box) {
-                            err_remove_box.remove()
-                        }
-                        let err_box = document.createElement('div')
-                        err_box.setAttribute('id', 'err_box')
 
-                        axios.post(bill_url, billing_data, config).then((r) => {
-                            if (r.status === 200) {
-                                let order_products_details_url = "{{route('order_products_details')}}"
+                if (total < 1) {
+                    alert('please Full Fill Your Order')
 
-                                let order_products_details_data = {}
-                                for (let i in r.data[1]) {
-                                    order_products_details_data = {
-                                        lastId: r.data[0],
-                                        product_id: r.data[1][i].product_id,
-                                        product_quantity: r.data[1][i].product_quantity,
+                } else {
+                    axios.post(order_url, order_data, config).then((r) => {
+                        // if order done //
+                        if (r.status === 200) {
+                            let billing_data = {
+                                lastId: r.data,
+                                name: name.value,
+                                email: email.value,
+                                phone_number: phone_number.value,
+                                country_id: country_id.value,
+                                city_id: city_id.value,
+                                zip: zip.value,
+                                address: address.value,
+                                notes: notes.value,
+                            }
+                            let bill_url = "{{route('order_billing_details')}}"
+                            let err_remove_box = document.getElementById('err_box')
+                            if (err_remove_box) {
+                                err_remove_box.remove()
+                            }
+                            let err_box = document.createElement('div')
+                            err_box.setAttribute('id', 'err_box')
+
+                            axios.post(bill_url, billing_data, config).then((r) => {
+                                if (r.status === 200) {
+                                    let order_products_details_url = "{{route('order_products_details')}}"
+
+                                    let order_products_details_data
+                                    for (let i in r.data[1]) {
+                                        order_products_details_data = {
+                                            lastId: r.data[0],
+                                            product_id: r.data[1][i].product_id,
+                                            product_quantity: r.data[1][i].product_quantity,
+
+                                        }
+                                        axios.post(order_products_details_url, order_products_details_data, config).then((r) => {
+                                            console.log(r)
+                                        }).catch((e) => {
+                                            console.log(e)
+                                        })
 
                                     }
-                                    axios.post(order_products_details_url, order_products_details_data, config).then((r) => {
-                                        console.log(r)
-                                    }).catch((e) => {
-                                        console.log(e)
-                                    })
 
+
+                                }
+                            }).catch((e) => {
+                                if (e.response.status > 399) {
+                                    let err = e.response.data.errors
+                                    order.after(err_box)
+                                    for (let i in err) {
+                                        for (let j in err[i]) {
+                                            let errAlert = document.createElement('div')
+                                            errAlert.classList.add('alert', 'alert-danger', 'mt-2')
+                                            errAlert.innerHTML = err[i][j]
+                                            err_box.appendChild(errAlert)
+                                        }
+                                    }
                                 }
 
 
-                            }
-                        }).catch((e) => {
-                            if (e.response.status > 399) {
-                                let err = e.response.data.errors
-                                order.after(err_box)
-                                for (let i in err) {
-                                    for (let j in err[i]) {
-                                        let errAlert = document.createElement('div')
-                                        errAlert.classList.add('alert', 'alert-danger', 'mt-2')
-                                        errAlert.innerHTML = err[i][j]
-                                        err_box.appendChild(errAlert)
-                                    }
-                                }
-                            }
-
-
-                        })
-                    }
-                }).catch((e) => {
-                    alert('something Wrong')
-                })
+                            })
+                        }
+                    }).catch((e) => {
+                        alert('something Wrong')
+                    })
+                }
             }
 
         })
