@@ -58,7 +58,7 @@
         let raw = document.getElementById('raw')
         let edit = document.getElementsByClassName('us-edit');
         let del = document.getElementsByClassName('us_del')
-        let admin_roles = ['super-admin','admin'];
+        let admin_roles = ['super-admin', 'admin'];
         let update_role = ['admin', 'moderator', 'user'];
         let auth_role = "{{Auth()->user()->role}}"
         // update loop
