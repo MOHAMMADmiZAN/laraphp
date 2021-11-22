@@ -71,7 +71,9 @@
                                 <div class="cartcupon-wrap">
                                     <ul class="d-flex">
                                         <li>
-                                            <button type="submit">Update Cart</button>
+                                            <button type="submit" class="{{$cart_products->count()>0?'':'d-none'}}">
+                                                Update Cart
+                                            </button>
                                         </li>
 
                                         <li><a href="{{route('shop')}}">Continue Shopping</a></li>

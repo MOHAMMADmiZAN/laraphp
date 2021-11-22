@@ -78,5 +78,6 @@ Route::get('/admin/coupon_delete/{id}', [CouponController::class, 'coupon_delete
 Route::get('/checkout/{discount?}', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::post('/get-city', [CheckoutController::class, 'city'])->name('city');
 Route::get('/get-phone/{id}', [CheckoutController::class, 'phone'])->name('phone');
+Route::post('/order-submit', [CheckoutController::class, 'order'])->name('order_submit');
 
 require __DIR__ . '/auth.php';

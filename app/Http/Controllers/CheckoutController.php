@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\City;
 use App\Models\country;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -37,5 +38,24 @@ class CheckoutController extends Controller
     {
         $phone = country::findOrFail($id)->phone_code;
         return '+' . $phone;
+    }
+
+    function order(Request $request)
+    {
+        $last_insert_id = Order::insertGetId([
+            'user_id' => auth()->id(),
+            'subtotal' => $request->sub_total,
+            'total' => $request->total,
+            'discount' => $request->discount,
+            'payment_method' => $request->payment_method,
+            'created_at' => now()
+
+        ]);
+        return response()->json([
+            'status' => 'success',
+            'order_data' => $request->all(),
+            'last_id' => $last_insert_id
+        ]);
+
     }
 }

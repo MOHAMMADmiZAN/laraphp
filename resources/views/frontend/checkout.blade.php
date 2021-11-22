@@ -167,25 +167,34 @@
                                 @endforeach
 
                                 <li>Subtotal <span
-                                        class="pull-right"><strong>${{$subtotal}}</strong></span>
+                                        class="pull-right" id="sub_total"
+                                        data-subtotal="{{$subtotal}}"><strong>${{$subtotal}}</strong></span>
                                 </li>
                                 <li>Discount(<small>{{$discount.'%'}}</small>)<span
-                                        class="pull-right">{{'$'.$discount_amount=$subtotal/100*$discount}}</span></li>
+                                        class="pull-right"
+                                        id="discount"
+                                        data-discount="{{$discount}}">{{'$'.$discount_amount=$subtotal/100*$discount}}</span>
+                                </li>
                                 <li>Shipping <span class="pull-right">Free</span></li>
-                                <li>Total<span class="pull-right">${{$total=$subtotal-$discount_amount}}</span></li>
+                                <li>Total<span class="pull-right"
+                                               id="total"
+                                               data-total="{{$total=$subtotal-$discount_amount}}">${{$total=$subtotal-$discount_amount}}</span>
+                                </li>
                             </ul>
                             <ul class="payment-method">
 
                                 <li>
-                                    <input id="card" type="checkbox">
+                                    <input id="card" type="checkbox" class="payment_online"
+                                           value="2">
                                     <label for="card">online Payment</label>
                                 </li>
                                 <li>
-                                    <input id="delivery" type="checkbox">
+                                    <input id="delivery" type="checkbox" value="1"
+                                           class="payment_cash">
                                     <label for="delivery">Cash on Delivery</label>
                                 </li>
                             </ul>
-                            <button>Place Order</button>
+                            <button id="place_order">Place Order</button>
                         </div>
                     </div>
                 </div>
@@ -247,6 +256,7 @@
                 }).catch(function (error) {
                     console.log(error.toJSON());
                 });
+
                 //257 to 266 number line gust for api testing
                 // let ipp = ''
                 // axios.get(`https://api.ipify.org?format=json`).then(function (response) {
@@ -261,5 +271,48 @@
 
             })
         });
+    </script>
+    <script>
+        let order = document.getElementById('place_order')
+        let sub_total = document.getElementById('sub_total').getAttribute('data-subtotal')
+        let total = document.getElementById('total').getAttribute('data-total')
+        let discount = document.getElementById('discount').getAttribute('data-discount')
+        let payment_cash = document.querySelector('.payment_cash');
+        let payment_online = document.querySelector('.payment_online');
+
+
+        order.addEventListener('click', (e) => {
+            let pay
+
+            if (payment_online.checked === true) {
+                pay = payment_online.value
+
+            } else if (payment_cash.checked === true) {
+                pay = payment_cash.value
+            } else {
+                pay = '';
+            }
+            const order_url = "{{route('order_submit')}}"
+            const order_data = {
+                sub_total: sub_total,
+                total: total,
+                discount: discount,
+                payment_method: pay,
+            }
+            const config = {
+                headers: {
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+
+                }
+            }
+            console.log(order_data)
+            axios.post(order_url, order_data, config).then((r) => {
+                if (r.status === 200) {
+
+                }
+            }).catch((e) => {
+                console.log(e)
+            })
+        })
     </script>
 @endsection
