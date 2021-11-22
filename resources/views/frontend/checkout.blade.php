@@ -347,11 +347,30 @@
 
                         axios.post(bill_url, billing_data, config).then((r) => {
                             if (r.status === 200) {
+                                let order_products_details_url = "{{route('order_products_details')}}"
+
+                                let order_products_details_data = {}
+                                for (let i in r.data[1]) {
+                                    order_products_details_data = {
+                                        lastId: r.data[0],
+                                        product_id: r.data[1][i].product_id,
+                                        product_quantity: r.data[1][i].product_quantity,
+
+                                    }
+                                    axios.post(order_products_details_url, order_products_details_data, config).then((r) => {
+                                        console.log(r)
+                                    }).catch((e) => {
+                                        console.log(e)
+                                    })
+
+                                }
+
 
                             }
                         }).catch((e) => {
                             if (e.response.status > 399) {
                                 let err = e.response.data.errors
+
 
                                 order.after(err_box)
                                 for (let i in err) {

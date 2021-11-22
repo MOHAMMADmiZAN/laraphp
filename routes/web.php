@@ -80,5 +80,6 @@ Route::post('/get-city', [CheckoutController::class, 'city'])->name('city');
 Route::get('/get-phone/{id}', [CheckoutController::class, 'phone'])->name('phone');
 Route::post('/order-submit', [CheckoutController::class, 'order'])->name('order_submit');
 Route::post('/order-billing', [CheckoutController::class, 'billing_details'])->name('order_billing_details');
+Route::post('/order-product-details', [CheckoutController::class, 'ordered_products'])->name('order_products_details');
 
 require __DIR__ . '/auth.php';
