@@ -28,7 +28,7 @@
                     <div class="col-lg-8">
                         <div class="checkout-form form-style">
                             <h3>Billing Details</h3>
-                            <form action="http://themepresss.com/tf/html/tohoney/checkout">
+                            <form>
                                 <div class="row">
                                     <div class="col-sm-6 col-12">
                                         <p>First Name *</p>
@@ -175,17 +175,10 @@
                                 <li>Total<span class="pull-right">${{$total=$subtotal-$discount_amount}}</span></li>
                             </ul>
                             <ul class="payment-method">
-                                <li>
-                                    <input id="bank" type="checkbox">
-                                    <label for="bank">Direct Bank Transfer</label>
-                                </li>
-                                <li>
-                                    <input id="paypal" type="checkbox">
-                                    <label for="paypal">Paypal</label>
-                                </li>
+
                                 <li>
                                     <input id="card" type="checkbox">
-                                    <label for="card">Credit Card</label>
+                                    <label for="card">online Payment</label>
                                 </li>
                                 <li>
                                     <input id="delivery" type="checkbox">

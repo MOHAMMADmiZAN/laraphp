@@ -40,7 +40,6 @@
                             @php
                                 $subtotal = 0;
                             @endphp
-
                             @foreach($cart_products as $cart)
                                 <tr>
                                     <td class="images"><img
@@ -106,7 +105,8 @@
                                         </li>
                                         <li><span class="pull-left"> Total </span>${{$subtotal-$discount_amount}}</li>
                                     </ul>
-                                    <a href="{{route('checkout',$discount)}}">Proceed to Checkout</a>
+                                    <a href="{{route('checkout',$discount)}}"
+                                       class="{{$cart_products->count()>0?'':'d-none'}}">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>
