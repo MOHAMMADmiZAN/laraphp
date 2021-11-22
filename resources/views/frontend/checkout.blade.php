@@ -297,9 +297,11 @@
 
             if (payment_online.checked === true) {
                 pay = payment_online.value
+                payment_cash.checked = false
 
             } else if (payment_cash.checked === true) {
                 pay = payment_cash.value
+                payment_online.checked = false
             } else {
                 pay = '';
             }
