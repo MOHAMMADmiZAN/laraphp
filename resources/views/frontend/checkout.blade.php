@@ -31,16 +31,16 @@
                             <form>
                                 <div class="row">
                                     <div class="col-sm-6 col-12">
-                                        <p>First Name *</p>
-                                        <input type="text" value="{{Auth::user()->name}}">
+                                        <p> Name *</p>
+                                        <input type="text" value="{{Auth::user()->name}}" id="name" readonly>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Email Address *</p>
-                                        <input type="email" value="{{Auth::user()->email}}">
+                                        <input type="email" value="{{Auth::user()->email}}" id="email" readonly>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Phone No. *</p>
-                                        <input type="text" id="phone">
+                                        <input type="text" id="phone" id="phone">
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Country *</p>
@@ -64,11 +64,11 @@
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <p>Postcode/ZIP</p>
-                                        <input type="email">
+                                        <input type="email" id="zip">
                                     </div>
                                     <div class="col-12">
                                         <p>Your Address *</p>
-                                        <input type="text">
+                                        <input type="text" id="address">
                                     </div>
 
 
@@ -146,7 +146,8 @@
                                     <div class="col-12">
                                         <p>Order Notes </p>
                                         <textarea name="massage"
-                                                  placeholder="Notes about Your Order, e.g.Special Note for Delivery"></textarea>
+                                                  placeholder="Notes about Your Order, e.g.Special Note for Delivery"
+                                                  id="notes"></textarea>
                                     </div>
                                 </div>
                             </form>
@@ -273,12 +274,22 @@
         });
     </script>
     <script>
+        // order details variable
         let order = document.getElementById('place_order')
         let sub_total = document.getElementById('sub_total').getAttribute('data-subtotal')
         let total = document.getElementById('total').getAttribute('data-total')
         let discount = document.getElementById('discount').getAttribute('data-discount')
         let payment_cash = document.querySelector('.payment_cash');
         let payment_online = document.querySelector('.payment_online');
+        // billing details variable
+        let name = document.getElementById('name')
+        let email = document.getElementById('email')
+        let phone_number = document.getElementById('phone')
+        let country_id = document.getElementById('country')
+        let city_id = document.getElementById('city')
+        let notes = document.getElementById('notes')
+        let zip = document.getElementById('zip')
+        let address = document.getElementById('address')
 
 
         order.addEventListener('click', (e) => {
@@ -307,11 +318,51 @@
             }
             console.log(order_data)
             axios.post(order_url, order_data, config).then((r) => {
+                // if order done //
                 if (r.status === 200) {
+                    let billing_data = {
+                        lastId: r.data,
+                        name: name.value,
+                        email: email.value,
+                        phone_number: phone_number.value,
+                        country_id: country_id.value,
+                        city_id: city_id.value,
+                        zip: zip.value,
+                        address: address.value,
+                        notes: notes.value,
+                    }
+                    let bill_url = "{{route('order_billing_details')}}"
+                    let err_remove_box = document.getElementById('err_box')
+                    if (err_remove_box) {
+                        err_remove_box.remove()
+                    }
+                    let err_box = document.createElement('div')
+                    err_box.setAttribute('id', 'err_box')
 
+                    axios.post(bill_url, billing_data, config).then((r) => {
+                        if (r.status === 200) {
+
+                        }
+                    }).catch((e) => {
+                        if (e.response.status > 399) {
+                            let err = e.response.data.errors
+
+                            order.after(err_box)
+                            for (let i in err) {
+                                for (let j in err[i]) {
+                                    let errAlert = document.createElement('div')
+                                    errAlert.classList.add('alert', 'alert-danger', 'mt-2')
+                                    errAlert.innerHTML = err[i][j]
+                                    err_box.appendChild(errAlert)
+                                }
+                            }
+                        }
+
+
+                    })
                 }
             }).catch((e) => {
-                console.log(e)
+                alert('something Wrong')
             })
         })
     </script>

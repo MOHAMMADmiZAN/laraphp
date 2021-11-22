@@ -6,12 +6,15 @@ use App\Models\Cart;
 use App\Models\City;
 use App\Models\country;
 use App\Models\Order;
+use App\Models\OrderBillingDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
 
 class CheckoutController extends Controller
 {
+
+
     function checkout($discount = 0)
     {
         $carts = Cart::whereCookieId(Cookie::get('cart'))->get();
@@ -51,11 +54,40 @@ class CheckoutController extends Controller
             'created_at' => now()
 
         ]);
-        return response()->json([
-            'status' => 'success',
-            'order_data' => $request->all(),
-            'last_id' => $last_insert_id
-        ]);
+        return $last_insert_id;
 
+
+    }
+
+    function billing_details(Request $request)
+    {
+        $request->validate([
+            'phone_number' => 'required',
+            'country_id' => 'required',
+            'city_id' => 'required',
+            'zip' => 'required',
+            'address' => 'required',
+            'notes' => 'required'
+        ]);
+        OrderBillingDetails::insert([
+            'user_id' => auth()->id(),
+            'order_id' => $request->lastId,
+            'customer_name' => $request->name,
+            'customer_email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'country_id' => $request->country_id,
+            'city_id' => $request->city_id,
+            'zip' => $request->zip,
+            'address' => $request->address,
+            'notes' => $request->notes,
+            'created_at' => now(),
+
+        ]);
+        return response()->json(
+            [
+                'status' => 200,
+                'billed_data' => $request->all()
+            ]
+        );
     }
 }
