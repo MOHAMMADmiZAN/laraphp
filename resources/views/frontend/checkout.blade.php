@@ -303,67 +303,73 @@
             } else {
                 pay = '';
             }
-            const order_url = "{{route('order_submit')}}"
-            const order_data = {
-                sub_total: sub_total,
-                total: total,
-                discount: discount,
-                payment_method: pay,
-            }
-            const config = {
-                headers: {
-                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+            if (pay === '') {
+                alert('please Select payment Method')
 
+            } else {
+                const order_url = "{{route('order_submit')}}"
+                const order_data = {
+                    sub_total: sub_total,
+                    total: total,
+                    discount: discount,
+                    payment_method: pay,
                 }
-            }
-            console.log(order_data)
-            axios.post(order_url, order_data, config).then((r) => {
-                // if order done //
-                if (r.status === 200) {
-                    let billing_data = {
-                        lastId: r.data,
-                        name: name.value,
-                        email: email.value,
-                        phone_number: phone_number.value,
-                        country_id: country_id.value,
-                        city_id: city_id.value,
-                        zip: zip.value,
-                        address: address.value,
-                        notes: notes.value,
-                    }
-                    let bill_url = "{{route('order_billing_details')}}"
-                    let err_remove_box = document.getElementById('err_box')
-                    if (err_remove_box) {
-                        err_remove_box.remove()
-                    }
-                    let err_box = document.createElement('div')
-                    err_box.setAttribute('id', 'err_box')
+                const config = {
+                    headers: {
+                        'X-CSRF-TOKEN': "{{csrf_token()}}"
 
-                    axios.post(bill_url, billing_data, config).then((r) => {
-                        if (r.status === 200) {
-
+                    }
+                }
+                console.log(order_data)
+                axios.post(order_url, order_data, config).then((r) => {
+                    // if order done //
+                    if (r.status === 200) {
+                        let billing_data = {
+                            lastId: r.data,
+                            name: name.value,
+                            email: email.value,
+                            phone_number: phone_number.value,
+                            country_id: country_id.value,
+                            city_id: city_id.value,
+                            zip: zip.value,
+                            address: address.value,
+                            notes: notes.value,
                         }
-                    }).catch((e) => {
-                        if (e.response.status > 399) {
-                            let err = e.response.data.errors
+                        let bill_url = "{{route('order_billing_details')}}"
+                        let err_remove_box = document.getElementById('err_box')
+                        if (err_remove_box) {
+                            err_remove_box.remove()
+                        }
+                        let err_box = document.createElement('div')
+                        err_box.setAttribute('id', 'err_box')
 
-                            order.after(err_box)
-                            for (let i in err) {
-                                for (let j in err[i]) {
-                                    let errAlert = document.createElement('div')
-                                    errAlert.classList.add('alert', 'alert-danger', 'mt-2')
-                                    errAlert.innerHTML = err[i][j]
-                                    err_box.appendChild(errAlert)
+                        axios.post(bill_url, billing_data, config).then((r) => {
+                            if (r.status === 200) {
+
+                            }
+                        }).catch((e) => {
+                            if (e.response.status > 399) {
+                                let err = e.response.data.errors
+
+                                order.after(err_box)
+                                for (let i in err) {
+                                    for (let j in err[i]) {
+                                        let errAlert = document.createElement('div')
+                                        errAlert.classList.add('alert', 'alert-danger', 'mt-2')
+                                        errAlert.innerHTML = err[i][j]
+                                        err_box.appendChild(errAlert)
+                                    }
                                 }
                             }
-                        }
 
 
-                    })
-                }
-            }).catch((e) => {
-                alert('something Wrong')
-            })
+                        })
+                    }
+                }).catch((e) => {
+                    alert('something Wrong')
+                })
+            }
+
         })
     </script>
 @endsection
