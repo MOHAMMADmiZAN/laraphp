@@ -370,8 +370,6 @@
                         }).catch((e) => {
                             if (e.response.status > 399) {
                                 let err = e.response.data.errors
-
-
                                 order.after(err_box)
                                 for (let i in err) {
                                     for (let j in err[i]) {
