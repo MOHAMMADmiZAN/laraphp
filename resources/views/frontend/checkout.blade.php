@@ -305,6 +305,13 @@
 
         order.addEventListener('click', (e) => {
             let pay
+            let online_redirect
+            const config = {
+                headers: {
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+
+                }
+            }
 
             if (payment_online.checked === true) {
                 pay = payment_online.value
@@ -320,24 +327,37 @@
                 alert('please Select payment Method')
 
             } else {
-                const order_url = "{{route('order_submit')}}"
-                const order_data = {
-                    sub_total: sub_total,
-                    total: total,
-                    discount: discount,
-                    payment_method: pay,
-                }
-                const config = {
-                    headers: {
-                        'X-CSRF-TOKEN': "{{csrf_token()}}"
-
-                    }
-                }
-
                 if (total < 1) {
                     alert('please Full Fill Your Order')
 
                 } else {
+                    if (pay == 2) {
+                        let onlinePay = "{{route('payViaAjax')}}"
+                        let onlinePayData = {
+                            name: name.value,
+                            email: email.value,
+                            phone_number: phone_number.value,
+                            total: total,
+                            address: address.value,
+                        }
+                        console.log(onlinePayData)
+                        axios.post(onlinePay, onlinePayData, config).then((r) => {
+                            if (r.data.status === 'success') {
+                                online_redirect = r.data.data
+
+                            }
+                        }).catch((e) => {
+                            console.log(e)
+                        })
+
+                    }
+                    const order_url = "{{route('order_submit')}}"
+                    const order_data = {
+                        sub_total: sub_total,
+                        total: total,
+                        discount: discount,
+                        payment_method: pay,
+                    }
                     axios.post(order_url, order_data, config).then((r) => {
                         // if order done //
                         if (r.status === 200) {
@@ -373,7 +393,11 @@
 
                                         }
                                         axios.post(order_products_details_url, order_products_details_data, config).then((r) => {
-                                            window.location.href = r.data
+                                            if (pay != 2) {
+                                                window.location.href = r.data
+                                            } else {
+                                                window.location.href = online_redirect
+                                            }
                                         }).catch((e) => {
                                             console.log(e.toJSON())
                                         })
