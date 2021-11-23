@@ -8,17 +8,6 @@ use Illuminate\Http\Request;
 
 class SslCommerzPaymentController extends Controller
 {
-
-    public function exampleEasyCheckout()
-    {
-        return view('exampleEasycheckout');
-    }
-
-    public function exampleHostedCheckout()
-    {
-        return view('exampleHosted');
-    }
-
     public function index(Request $request)
     {
         # Here you have to receive all the order data to initate the payment.
