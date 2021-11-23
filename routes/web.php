@@ -83,10 +83,6 @@ Route::post('/order-submit', [CheckoutController::class, 'order'])->name('order_
 Route::post('/order-billing', [CheckoutController::class, 'billing_details'])->name('order_billing_details');
 Route::post('/order-product-details', [CheckoutController::class, 'ordered_products'])->name('order_products_details');
 // SSLCOMMERZ Start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
-
-Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('pay');
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('payViaAjax');
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
