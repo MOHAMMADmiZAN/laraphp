@@ -305,14 +305,6 @@
 
         order.addEventListener('click', (e) => {
             let pay
-            let online_redirect
-            const config = {
-                headers: {
-                    'X-CSRF-TOKEN': "{{csrf_token()}}"
-
-                }
-            }
-
             if (payment_online.checked === true) {
                 pay = payment_online.value
                 payment_cash.checked = false
@@ -331,25 +323,11 @@
                     alert('please Full Fill Your Order')
 
                 } else {
-                    if (pay == 2) {
-                        let onlinePay = "{{route('payViaAjax')}}"
-                        let onlinePayData = {
-                            name: name.value,
-                            email: email.value,
-                            phone_number: phone_number.value,
-                            total: total,
-                            address: address.value,
+                    const config = {
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}"
+
                         }
-                        console.log(onlinePayData)
-                        axios.post(onlinePay, onlinePayData, config).then((r) => {
-                            if (r.data.status === 'success') {
-                                online_redirect = r.data.data
-
-                            }
-                        }).catch((e) => {
-                            console.log(e)
-                        })
-
                     }
                     const order_url = "{{route('order_submit')}}"
                     const order_data = {
@@ -393,11 +371,34 @@
 
                                         }
                                         axios.post(order_products_details_url, order_products_details_data, config).then((r) => {
-                                            if (pay != 2) {
-                                                window.location.href = r.data
-                                            } else {
-                                                window.location.href = online_redirect
+                                            if (r.status === 200) {
+                                                if (pay == 2) {
+                                                    let onlinePay = "{{route('payViaAjax')}}"
+                                                    let onlinePayData = {
+                                                        name: name.value,
+                                                        email: email.value,
+                                                        phone_number: phone_number.value,
+                                                        total: total,
+                                                        address: address.value,
+                                                    }
+                                                    console.log(onlinePayData)
+                                                    axios.post(onlinePay, onlinePayData, config).then((r) => {
+                                                        if (r.data.status === 'success') {
+                                                            window.location.href = r.data.data
+
+                                                        }
+                                                    }).catch((e) => {
+                                                        console.log(e)
+                                                    })
+
+                                                } else {
+                                                    window.location.href = r.data
+                                                }
+
+
                                             }
+
+
                                         }).catch((e) => {
                                             console.log(e.toJSON())
                                         })
