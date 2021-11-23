@@ -381,7 +381,6 @@
                                                         total: total,
                                                         address: address.value,
                                                     }
-                                                    console.log(onlinePayData)
                                                     axios.post(onlinePay, onlinePayData, config).then((r) => {
                                                         if (r.data.status === 'success') {
                                                             window.location.href = r.data.data
