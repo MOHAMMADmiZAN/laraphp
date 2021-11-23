@@ -8,6 +8,7 @@ use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\editProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\Usercontroller;
 use Illuminate\Support\Facades\Route;
@@ -81,5 +82,18 @@ Route::get('/get-phone/{id}', [CheckoutController::class, 'phone'])->name('phone
 Route::post('/order-submit', [CheckoutController::class, 'order'])->name('order_submit');
 Route::post('/order-billing', [CheckoutController::class, 'billing_details'])->name('order_billing_details');
 Route::post('/order-product-details', [CheckoutController::class, 'ordered_products'])->name('order_products_details');
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
 
 require __DIR__ . '/auth.php';
