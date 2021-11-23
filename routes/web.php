@@ -84,7 +84,6 @@ Route::post('/order-billing', [CheckoutController::class, 'billing_details'])->n
 Route::post('/order-product-details', [CheckoutController::class, 'ordered_products'])->name('order_products_details');
 // SSLCOMMERZ Start
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('payViaAjax');
-
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
 Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
 Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
