@@ -90,5 +90,7 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+// stripe//
+Route::view('/stripe-pay','frontend.stripe')->name('stripe-pay');
 
 require __DIR__ . '/auth.php';

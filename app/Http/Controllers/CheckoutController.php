@@ -11,6 +11,7 @@ use App\Models\OrderProductsDetails;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Stripe\Stripe;
 
 
 class CheckoutController extends Controller
@@ -93,6 +94,7 @@ class CheckoutController extends Controller
     {
 
         $product = Products::whereId($request->product_id)->first();
+
         OrderProductsDetails::insert([
             "order_id" => $request->lastId,
             "user_id" => auth()->id(),
@@ -105,6 +107,7 @@ class CheckoutController extends Controller
         Cart::whereCookieId(Cookie::get('cart'))->delete();
         Cookie::queue(Cookie::forget('cart'));
         return route('checkout');
+
 
 
     }

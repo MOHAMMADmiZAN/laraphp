@@ -187,7 +187,12 @@
                                 <li>
                                     <input id="card" type="checkbox" class="payment_online"
                                            value="2">
-                                    <label for="card">online Payment</label>
+                                    <label for="card"> SSL-online Payment</label>
+                                </li>
+                                <li>
+                                    <input id="s_card" type="checkbox"
+                                           value="3" class="payment_stripe">
+                                    <label for="s_card">Stripe-online Payment</label>
                                 </li>
                                 <li>
                                     <input id="delivery" type="checkbox" value="1"
@@ -292,6 +297,7 @@
         let discount = document.getElementById('discount').getAttribute('data-discount')
         let payment_cash = document.querySelector('.payment_cash');
         let payment_online = document.querySelector('.payment_online');
+        let payment_stripe = document.querySelector('.payment_stripe');
         // billing details variable
         let name = document.getElementById('name')
         let email = document.getElementById('email')
@@ -308,10 +314,17 @@
             if (payment_online.checked === true) {
                 pay = payment_online.value
                 payment_cash.checked = false
+                payment_stripe.checked = false
 
             } else if (payment_cash.checked === true) {
                 pay = payment_cash.value
                 payment_online.checked = false
+                payment_stripe.checked = false
+            } else if (payment_stripe.checked === true) {
+                pay = payment_stripe.value
+                payment_cash.checked = false
+                payment_online.checked = false
+
             } else {
                 pay = '';
             }
@@ -392,6 +405,9 @@
 
                                                 } else {
                                                     window.location.href = r.data
+                                                }
+                                                if (pay == 3) {
+                                                    window.location.href = "{{route('stripe-pay')}}"
                                                 }
 
 
