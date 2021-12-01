@@ -231,8 +231,7 @@
                             <p>Edit-Profile</p>
                         </a>
                     <li class="nav-item">
-                        <a href="{{route('logout')}}" class="nav-link"
-                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <a href="{{route('logout')}}" class="nav-link" id="_logout">
                             <i class="fas fa-sign-out-alt nav-icon"></i>
                             <p>Logout</p>
                         </a>
@@ -240,6 +239,21 @@
                             @csrf
 
                         </form>
+                        <script>
+                            let logout = document.getElementById('_logout')
+                            logout.addEventListener('click', (event) => {
+                                event.preventDefault();
+                                document.getElementById('logout-form').submit();
+                            })
+
+                        </script>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('home')}}" class="nav-link">
+                            <i class=" nav-icon fas fa-home"></i>
+                            <p>Visit Website</p>
+                        </a>
+
                     </li>
                     <li class="nav-item menu-open">
                         <a href="{{route('dashboard')}}"
@@ -251,6 +265,7 @@
                             </p>
                         </a>
                     </li>
+
                     @if(auth()->user()->role== 'super-admin' || auth()->user()->role== 'admin')
                         <li class="nav-item ">
                             <a href="#"

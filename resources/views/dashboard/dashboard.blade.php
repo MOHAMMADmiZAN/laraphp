@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">{{auth()->user()->name}}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -22,6 +22,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            @if(auth()->user()->role== 'user')
+                @includeIf('dashboard.dashboardParts.customer')
+            @endif
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
