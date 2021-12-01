@@ -61,7 +61,7 @@
 
 
             card.mount('#payment-card');
-            document.querySelector('.pay_now').innerHTML = `Pay-Now $${Math.floor(sessionStorage.getItem('Total') / 85)} `
+            document.querySelector('.pay_now').innerHTML = `Pay-Now ($${Math.floor(sessionStorage.getItem('Total') / 85)}) `
             document.getElementById("total_amount").setAttribute('value', sessionStorage.getItem('Total'));
             document.getElementById("description").setAttribute('value', sessionStorage.getItem('Description'));
             // Handle real-time validation errors from the card Element.

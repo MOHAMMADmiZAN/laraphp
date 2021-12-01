@@ -104,6 +104,7 @@ class CheckoutController extends Controller
             "product_price" => $product->product_price * $request->product_quantity,
             'created_at' => now()
         ]);
+        Products::whereId($request->product_id)->decrement('product_quantity', $request->product_quantity);
         Cart::whereCookieId(Cookie::get('cart'))->delete();
         Cookie::queue(Cookie::forget('cart'));
         return route('checkout');
@@ -121,7 +122,7 @@ class CheckoutController extends Controller
 
         try {
             //cartalyst/stripe-laravel
-            $charge = Stripe::charges()->create([
+            Stripe::charges()->create([
                 'amount' => $request->__totals / 85,
                 'currency' => 'USD',
                 'source' => $request->stripeToken,

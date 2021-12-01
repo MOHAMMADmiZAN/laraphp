@@ -251,117 +251,118 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#"
-                           class="nav-link {{Route::is('users-index')==url()->current()? 'active':''}}">
-                            <i class="nav-icon fas fa-th-large"></i>
-                            <p>
-                                Users
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('users-index')}}" class="nav-link ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Users List</p>
-                                </a>
-                            </li>
+                    @if(auth()->user()->role== 'super-admin' || auth()->user()->role== 'admin')
+                        <li class="nav-item ">
+                            <a href="#"
+                               class="nav-link {{Route::is('users-index')==url()->current()? 'active':''}}">
+                                <i class="nav-icon fas fa-th-large"></i>
+                                <p>
+                                    Users
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('users-index')}}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Users List</p>
+                                    </a>
+                                </li>
 
-                        </ul>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#"
-                           class="nav-link {{Route::is('categoriesView')||Route::is('categoriesAdd')||Route::is('categoriesTrashed')||Route::is('categoriesEdit')==url()->current()? 'active':''}}">
-                            <i class="nav-icon fas fa-th-large"></i>
-                            <p>
-                                Categories
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('categoriesAdd')}}" class="nav-link ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Category</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('categoriesView')}}"
-                                   class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Category</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('categoriesTrashed')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Trashed Category</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#"
-                           class="nav-link {{Route::is('subCategory') || Route::is('subCategoryEdit')||Route::is('subCategoryTrash')==url()->current()? 'active':''}}">
-                            <i class="nav-icon fas fa-th-large"></i>
-                            <p>
-                                Subcategory
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('subCategory')}}" class="nav-link ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Sub-Category</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('subCategoryTrash')}}" class="nav-link ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Sub-category-Trashed</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#"
-                           class="nav-link {{Route::is('products.index')==url()->current()? 'active':''}}">
-                            <i class="nav-icon fas fa-th-large"></i>
-                            <p>
-                                Products
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('products.index')}}" class="nav-link ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Products List</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#"
-                           class="nav-link {{Route::is('coupon')==url()->current()? 'active':''}}">
-                            <i class="nav-icon fas fa-th-large"></i>
-                            <p>
-                                Coupons
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('coupon')}}" class="nav-link ">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Coupons List</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
+                            </ul>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#"
+                               class="nav-link {{Route::is('categoriesView')||Route::is('categoriesAdd')||Route::is('categoriesTrashed')||Route::is('categoriesEdit')==url()->current()? 'active':''}}">
+                                <i class="nav-icon fas fa-th-large"></i>
+                                <p>
+                                    Categories
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('categoriesAdd')}}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('categoriesView')}}"
+                                       class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('categoriesTrashed')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Trashed Category</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#"
+                               class="nav-link {{Route::is('subCategory') || Route::is('subCategoryEdit')||Route::is('subCategoryTrash')==url()->current()? 'active':''}}">
+                                <i class="nav-icon fas fa-th-large"></i>
+                                <p>
+                                    Subcategory
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('subCategory')}}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sub-Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('subCategoryTrash')}}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sub-category-Trashed</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#"
+                               class="nav-link {{Route::is('products.index')==url()->current()? 'active':''}}">
+                                <i class="nav-icon fas fa-th-large"></i>
+                                <p>
+                                    Products
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('products.index')}}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#"
+                               class="nav-link {{Route::is('coupon')==url()->current()? 'active':''}}">
+                                <i class="nav-icon fas fa-th-large"></i>
+                                <p>
+                                    Coupons
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('coupon')}}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Coupons List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
 
                 </ul>
             </nav>
