@@ -32,6 +32,7 @@
                                    placeholder="Card Holder Name" name="card_holder_name">
                         </div>
                         <input type="hidden" name="__totals" id="total_amount">
+                        <input type="hidden" name="__Order_Description" id="description">
                         <div id="payment-card">
                         </div>
                         <div id="card-errors" role="alert"></div>
@@ -60,7 +61,9 @@
 
 
             card.mount('#payment-card');
+            document.querySelector('.pay_now').innerHTML = `Pay-Now $${Math.floor(sessionStorage.getItem('Total') / 85)} `
             document.getElementById("total_amount").setAttribute('value', sessionStorage.getItem('Total'));
+            document.getElementById("description").setAttribute('value', sessionStorage.getItem('Description'));
             // Handle real-time validation errors from the card Element.
             card.addEventListener('change', function (event) {
                 let displayError = document.getElementById('card-errors');
@@ -80,6 +83,7 @@
                 let options = {
                     name: document.querySelector('#c_name').value,
                     total_amount: document.querySelector('#total_amount').value,
+                    description: document.querySelector('#description').value,
                 }
 
                 stripe.createToken(card, options).then(function (result) {
@@ -94,6 +98,8 @@
                         // Send the token to your server
                         stripeTokenHandler(result.token);
                     }
+                }).catch(function (error) {
+                    console.log(error)
                 });
             })
 

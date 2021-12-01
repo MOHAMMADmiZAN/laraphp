@@ -125,7 +125,7 @@ class CheckoutController extends Controller
                 'amount' => $request->__totals / 85,
                 'currency' => 'USD',
                 'source' => $request->stripeToken,
-                'description' => 'Order',
+                'description' => $request->__Order_Description,
 
 
             ]);
