@@ -9,9 +9,9 @@ use App\Models\Order;
 use App\Models\OrderBillingDetails;
 use App\Models\OrderProductsDetails;
 use App\Models\Products;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Stripe\Stripe;
 
 
 class CheckoutController extends Controller
@@ -108,6 +108,32 @@ class CheckoutController extends Controller
         Cookie::queue(Cookie::forget('cart'));
         return route('checkout');
 
+
+    }
+
+    function stripeIndex($total)
+    {
+        return view('frontend.stripe', ['total' => $total]);
+    }
+
+    function stripe_payment(Request $request)
+    {
+
+        try {
+            //cartalyst/stripe-laravel
+            $charge = Stripe::charges()->create([
+                'amount' => $request->__totals / 85,
+                'currency' => 'USD',
+                'source' => $request->stripeToken,
+                'description' => 'Order',
+
+
+            ]);
+            return redirect()->route('shop');
+        } catch (\Exception $e) {
+            print_r($e);
+
+        }
 
 
     }

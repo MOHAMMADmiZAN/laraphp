@@ -407,6 +407,8 @@
                                                     window.location.href = r.data
                                                 }
                                                 if (pay == 3) {
+                                                    // data catch with session storage
+                                                    sessionStorage.setItem("Total", total);
                                                     window.location.href = "{{route('stripe-pay')}}"
                                                 }
 
