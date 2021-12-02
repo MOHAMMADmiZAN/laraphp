@@ -117,6 +117,7 @@ class CheckoutController extends Controller
         return view('frontend.stripe', ['total' => $total]);
     }
 
+
     function stripe_payment(Request $request)
     {
 
@@ -131,7 +132,9 @@ class CheckoutController extends Controller
 
             ]);
 
+
         } catch (\Exception $e) {
+
             return back()->with('card-decline', $e->getMessage());
 
         }
