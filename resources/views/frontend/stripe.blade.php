@@ -25,6 +25,10 @@
             <div class="card text-center">
                 <div class="card-header"><h6>Pay With Stripe</h6></div>
                 <div class="card-body">
+                    @if(session('card-decline'))
+                        <div class="alert alert-danger">{{session('card-decline')}}</div>
+                    @endif
+
                     <form action="{{route('stripe-pay_post')}}" id="payment_form" method="post">
                         @csrf
                         <div class="form-group">
@@ -74,7 +78,7 @@
                 }
             });
             let payment_form = document.getElementById('payment_form');
-            sessionStorage.clear()
+
             payment_form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 // Disable the submit button to prevent repeated clicks
@@ -111,11 +115,14 @@
                 hiddenInput.setAttribute('name', 'stripeToken');
                 hiddenInput.setAttribute('value', token.id);
                 form.appendChild(hiddenInput);
+                sessionStorage.clear()
                 // Submit the form
                 form.submit();
             }
 
+
         }
+
     )()
 
 </script>

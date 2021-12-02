@@ -409,7 +409,7 @@
                                                 if (pay == 3) {
                                                     // data catch with session storage
                                                     sessionStorage.setItem("Total", total);
-                                                    sessionStorage.setItem("Description", `This Order Created by ${name.value}`)
+                                                    sessionStorage.setItem("Description", notes.value)
                                                     window.location.href = "{{route('stripe-pay')}}"
                                                 }
 
