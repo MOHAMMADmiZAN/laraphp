@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\Products;
 use App\Models\Products_thumbnail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
 class FrontendController extends Controller
@@ -16,13 +17,17 @@ class FrontendController extends Controller
         return view("frontend.home", ["products" => $products, "categories" => $category]);
     }
 
-    public function singleProduct($id)
+    public function singleProduct($id, Request $request)
     {
-        $single = Products::findOrFail($id);
-        $subcategory_id = Products::findOrFail($id)->sub_category_id;
-        $relationalProduct = Products::where('sub_category_id', $subcategory_id)->where("id", "!=", $id)->get();
-        $thumbnailPhoto = Products_thumbnail::where('product_id', $id)->get();
-        return view("frontend.single-product", ["singleProductData" => $single, "relationalProduct" => $relationalProduct, "thumbnailPhoto" => $thumbnailPhoto]);
+        if ($request->hasValidSignature()){
+           $single = Products::findOrFail($id);
+           $subcategory_id = Products::findOrFail($id)->sub_category_id;
+           $relationalProduct = Products::where('sub_category_id', $subcategory_id)->where("id", "!=", $id)->get();
+           $thumbnailPhoto = Products_thumbnail::where('product_id', $id)->get();
+           return view("frontend.single-product", ["singleProductData" => $single, "relationalProduct" => $relationalProduct, "thumbnailPhoto" => $thumbnailPhoto]);
+       }else{
+           abort(403);
+       }
     }
 
     public function shop()

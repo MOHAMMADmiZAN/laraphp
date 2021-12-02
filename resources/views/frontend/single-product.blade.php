@@ -82,9 +82,13 @@
                                     <input type="text" value="1" name="quantity"/>
                                 </li>
                                 <li>
-                                    <button type="submit" class="btn cart-btn-custom">
+                                    <button type="submit"
+                                            class="btn cart-btn-custom"
+                                            style="{{$singleProductData->product_quantity>0?"":"display:none !important"}}">
                                         Add to Cart
                                     </button>
+                                    <p style="color:orangered">{{$singleProductData->product_quantity>0?"":"This Product Out of stock"}}</p>
+
                                 </li>
                             </ul>
                         </form>

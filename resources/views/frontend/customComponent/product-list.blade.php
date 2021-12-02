@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="product-content">
-            <h3><a href="{{route('single',[$data->id])}}">{{$data->product_name}}</a></h3>
+            <h3><a href="{{\Illuminate\Support\Facades\URL::signedRoute('single',[$data->id])}}">{{$data->product_name}}</a></h3>
             <p class="pull-left">৳{{$data->product_price}}</p>
             <ul class="pull-right d-flex">
                 <li><i class="fa fa-star"></i></li>

@@ -21,7 +21,7 @@
 <body>
 <div class="container mt-5">
     <div class="row m-auto">
-        <div class="col-lg-6">
+        <div class="col-lg-6 m-auto">
             <div class="card text-center">
                 <div class="card-header"><h6>Pay With Stripe</h6></div>
                 <div class="card-body">
