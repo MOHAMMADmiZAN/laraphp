@@ -16,7 +16,7 @@
                         <th>Customer Name</th>
                         <th>Phone Number</th>
                         <th>Order Price</th>
-                        <th>Order Status</th>
+                        <th>Invoice</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,7 +27,8 @@
                             <td>{{$order->customer_name}}</td>
                             <td>{{$order->phone_number}}</td>
                             <td>BDT {{$order->order->total}}</td>
-                            <td>Done</td>
+                            <td><a href="{{route('invoice_pdf',$order->order_id)}}" class="btn btn-info"><i
+                                        class="fas fa-download"></i></a></td>
                         </tr>
                     @empty
                         <p>No users</p>

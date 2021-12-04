@@ -7,6 +7,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\editProfileController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\invoiceController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\SubCategoryController;
@@ -93,5 +94,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 // stripe//
 Route::get('/stripe-pay', [CheckoutController::class, 'stripeIndex'])->name('stripe-pay');
 Route::post('/stripe-post', [CheckoutController::class, 'stripe_payment'])->name('stripe-pay_post');
+// invoice //
+Route::get('/pdf-invoice/{id}', [InvoiceController::class, 'invoice'])->name('invoice_pdf');
 
 require __DIR__ . '/auth.php';
