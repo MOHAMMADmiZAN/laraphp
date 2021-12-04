@@ -120,10 +120,10 @@ class CheckoutController extends Controller
 
     function stripe_payment(Request $request)
     {
-
         try {
             //cartalyst/stripe-laravel package
             Stripe::charges()->create([
+
                 'amount' => $request->__totals / 85,
                 'currency' => 'USD',
                 'source' => $request->stripeToken,
@@ -131,14 +131,14 @@ class CheckoutController extends Controller
 
 
             ]);
-
+            return redirect()->route('shop');
 
         } catch (\Exception $e) {
 
             return back()->with('card-decline', $e->getMessage());
 
         }
-        return redirect()->route('shop');
+
 
     }
 }
