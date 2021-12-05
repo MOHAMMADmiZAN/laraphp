@@ -112,9 +112,9 @@ class CheckoutController extends Controller
 
     }
 
-    function stripeIndex($total)
+    function stripeIndex()
     {
-        return view('frontend.stripe', ['total' => $total]);
+        return view('frontend.stripe');
     }
 
 

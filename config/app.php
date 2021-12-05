@@ -168,7 +168,6 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
 
 
         /*
@@ -236,7 +235,6 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 
     ],
