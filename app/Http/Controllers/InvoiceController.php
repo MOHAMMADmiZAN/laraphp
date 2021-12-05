@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendinvoice;
 use App\Models\Order;
 use App\Models\OrderBillingDetails;
 use App\Models\OrderProductsDetails;
+use Illuminate\Support\Facades\Mail;
 use LaravelDaily\Invoices\Invoice;
 
 
@@ -13,6 +15,7 @@ class InvoiceController extends Controller
     // laravel Invoice
     function invoice($id)
     {
+        Mail::to('tavex54709@tinydef.com')->send(new sendinvoice());
         $data = OrderProductsDetails::whereOrderId($id)->get();
         $cus = OrderBillingDetails::whereOrderId($id)->first();
         $discount = Order::findOrFail($id)->discount;
@@ -34,6 +37,7 @@ class InvoiceController extends Controller
             ->currencyFormat('{VALUE} BDT')
             ->discountByPercent($discount)
             ->filename($customer->name . time() . '-' . $id);
+
 
         return $invoice->stream();
 
