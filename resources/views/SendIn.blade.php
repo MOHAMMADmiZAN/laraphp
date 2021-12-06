@@ -26,7 +26,9 @@
 </head>
 
 <body>
+
 @php
+    $order_id = 1;
     $customer = \App\Models\OrderBillingDetails::whereOrderId($order_id)->firstOrFail();
     $products = \App\Models\OrderProductsDetails::whereOrderId($order_id)->get();
     $order = \App\Models\Order::findOrFail($order_id);
@@ -55,7 +57,7 @@
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-lg-8 m-auto">
+                        <div class="col-lg-12 m-auto">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -66,9 +68,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($products as $product)
+                                @foreach($products as $i=> $product)
                                     <tr>
-                                        <td>{{$product->order_id}}</td>
+                                        <td>{{$i+1}}</td>
                                         <td>{{$product->product_name}}</td>
                                         <td>{{$product->product_quantity}}</td>
                                         <td>{{$product->product_price}}</td>
@@ -76,17 +78,17 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td>SubTotal</td>
+                                    <td class="fw-bold">SubTotal</td>
                                     <td>{{$order->subtotal}} BDT</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td>Discount</td>
-                                    <td>(-){{$order->discount}} %</td>
+                                    <td class="fw-bold">Discount</td>
+                                    <td>(-) {{$order->discount}} %</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td>Total</td>
+                                    <td class="fw-bold">Total</td>
                                     <td>{{$order->total}} BDT</td>
                                 </tr>
                                 </tbody>
@@ -117,5 +119,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+<script>
+    window.addEventListener('load', function (e) {
+
+        let order_id = prompt('type Order Id')
+        sessionStorage.setItem('order_id', order_id);
+
+    })
+</script>
 </body>
 </html>

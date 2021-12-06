@@ -31,7 +31,7 @@
                                         class="fas fa-download"></i></a></td>
                         </tr>
                     @empty
-                        <p>No users</p>
+                        <p>No Order </p>
                     @endforelse
 
                     </tbody>

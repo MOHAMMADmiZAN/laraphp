@@ -96,6 +96,6 @@ Route::get('/stripe-pay', [CheckoutController::class, 'stripeIndex'])->name('str
 Route::post('/stripe-post', [CheckoutController::class, 'stripe_payment'])->name('stripe-pay_post');
 // invoice //
 Route::get('/pdf-invoice/{id}', [InvoiceController::class, 'invoice'])->name('invoice_pdf');
-//Route::view('/invoice_view', 'SendIn', ['order_id' => '5']);
+Route::view('/invoice_view', 'SendIn');
 
 require __DIR__ . '/auth.php';
