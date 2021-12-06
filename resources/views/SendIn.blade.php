@@ -44,8 +44,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul>
-                                <li> Date: {{now()->format('h:i:a,Y-m-d')}}</li>
-                                <li>Serial_Number: {{'Cus_'.$order_id.'.'.$t}}</li>
+                                <li> Time: {{now()->format('h:i:a,d-m-Y')}}</li>
+                                <li>Serial_Number: {{'Cus_'.$order_id.'$'.$t}}</li>
                             </ul>
                         </div>
                         <div class="col-lg-6">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-lg-12 m-auto">
-                            <table class="table table-striped">
+                            <table class="table table-striped text-center">
                                 <thead>
                                 <tr>
                                     <th>Order_Number</th>
@@ -85,12 +85,12 @@
                                 <tr>
                                     <td colspan="2"></td>
                                     <td class="fw-bold">Discount</td>
-                                    <td class="fw-bold">(-) {{$order->discount}} %</td>
+                                    <td class="fw-bold">(-) {{$order->discount}}%</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                     <td class="fw-bold">Total</td>
-                                    <td class="fw-bold">{{$order->total}} BDT</td>
+                                    <td class="fw-bold">{{$order->subtotal-$order->subtotal/100*$order->discount}} BDT</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -101,7 +101,7 @@
                                         $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
                                       $word = $f->format($order->total);
                                     @endphp
-                                    {{strtoupper('Note: '.$word.'  Taka ONLY.')}}
+                                    {{strtoupper('IN Word: '.$word.'  Taka ONLY.')}}
                                 </div>
                             </div>
 
