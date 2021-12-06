@@ -21,17 +21,18 @@
 
         }
     </style>
-    <td></td>
 
 </head>
 
 <body>
 
 @php
+
     $order_id = 1;
-    $customer = \App\Models\OrderBillingDetails::whereOrderId($order_id)->firstOrFail();
-    $products = \App\Models\OrderProductsDetails::whereOrderId($order_id)->get();
-    $order = \App\Models\Order::findOrFail($order_id);
+      $customer = \App\Models\OrderBillingDetails::whereOrderId($order_id)->firstOrFail();
+      $products = \App\Models\OrderProductsDetails::whereOrderId($order_id)->get();
+      $order = \App\Models\Order::findOrFail($order_id);
+      $t = time()
 
 @endphp
 <div class="container mt-5">
@@ -43,8 +44,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul>
-                                <li> Date: {{now()->format('Y-m-d')}}</li>
-                                <li>Serial_Number: {{'Cus_'.$order_id}}</li>
+                                <li> Date: {{now()->format('h:i:a,Y-m-d')}}</li>
+                                <li>Serial_Number: {{'Cus_'.$order_id.'.'.$t}}</li>
                             </ul>
                         </div>
                         <div class="col-lg-6">
@@ -73,23 +74,23 @@
                                         <td>{{$i+1}}</td>
                                         <td>{{$product->product_name}}</td>
                                         <td>{{$product->product_quantity}}</td>
-                                        <td>{{$product->product_price}}</td>
+                                        <td>{{$product->product_price.'৳'}}</td>
                                     </tr>
                                 @endforeach
                                 <tr>
                                     <td colspan="2"></td>
                                     <td class="fw-bold">SubTotal</td>
-                                    <td>{{$order->subtotal}} BDT</td>
+                                    <td class="fw-bold">{{$order->subtotal}} BDT</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                     <td class="fw-bold">Discount</td>
-                                    <td>(-) {{$order->discount}} %</td>
+                                    <td class="fw-bold">(-) {{$order->discount}} %</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                     <td class="fw-bold">Total</td>
-                                    <td>{{$order->total}} BDT</td>
+                                    <td class="fw-bold">{{$order->total}} BDT</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -118,14 +119,9 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-<script>
-    window.addEventListener('load', function (e) {
+        crossorigin="anonymous">
 
-        let order_id = prompt('type Order Id')
-        sessionStorage.setItem('order_id', order_id);
-
-    })
 </script>
+
 </body>
 </html>
