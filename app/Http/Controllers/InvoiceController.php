@@ -15,7 +15,6 @@ class InvoiceController extends Controller
     // laravel Invoice
     function invoice($id)
     {
-        Mail::to('tavex54709@tinydef.com')->send(new sendinvoice());
         $data = OrderProductsDetails::whereOrderId($id)->get();
         $cus = OrderBillingDetails::whereOrderId($id)->first();
         $discount = Order::findOrFail($id)->discount;

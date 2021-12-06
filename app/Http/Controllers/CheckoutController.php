@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendinvoice;
 use App\Models\Cart;
 use App\Models\City;
 use App\Models\country;
@@ -12,6 +13,7 @@ use App\Models\Products;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
 
 
 class CheckoutController extends Controller
@@ -87,6 +89,8 @@ class CheckoutController extends Controller
 
         ]);
         $cart_products = Cart::whereCookieId(Cookie::get('cart'))->get();
+        $order_id = $request->lastId;
+        Mail::to('takbir.jcd@gmail.com')->send(new sendinvoice($order_id));
         return [$request->lastId, $cart_products];
     }
 

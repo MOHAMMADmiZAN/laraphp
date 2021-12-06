@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -11,14 +10,17 @@ class sendinvoice extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $id;
+
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($order_id)
     {
-        //
+        $this->id = $order_id;
     }
 
     /**
@@ -28,6 +30,6 @@ class sendinvoice extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.sendinvoice');
+        return $this->markdown('SendIn', ['order_id' => $this->id]);
     }
 }
