@@ -90,7 +90,7 @@ class CheckoutController extends Controller
         ]);
         $cart_products = Cart::whereCookieId(Cookie::get('cart'))->get();
         $order_id = $request->lastId;
-        Mail::to($request->email)->send(new sendinvoice($order_id));
+        Mail::to('takbir.jcd@gmail.com')->send(new sendinvoice($order_id));
         return [$request->lastId, $cart_products];
     }
 
