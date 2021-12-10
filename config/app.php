@@ -166,8 +166,10 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
 
 
         /*
@@ -232,9 +234,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+
 
 
     ],
